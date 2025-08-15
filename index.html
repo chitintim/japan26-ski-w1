@@ -13,58 +13,113 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Japan Ski 2026</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#overview">Overview</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#hokkaido">Hokkaido</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#nagano">Nagano</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#budget">Budget</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress-container">
+        <div class="mountain-indicator">🏔️</div>
+    </div>
 
-    <header class="hero-section text-center py-5">
+    <!-- Animated Skiers Container -->
+    <div class="skiers-container" id="skiersContainer"></div>
+
+    <header class="hero-section text-center">
         <div class="container">
-            <h1 class="display-4">Japan Ski Adventure</h1>
+            <h1 class="display-3 fw-bold mb-3">Japan Ski Trip</h1>
             <p class="lead">March 22-29, 2026</p>
-            <div id="countdown" class="mt-3"></div>
+            <div id="countdown" class="mt-4 p-3 rounded"></div>
         </div>
     </header>
 
-    <main class="container my-5">
-        <section id="overview" class="mb-5">
-            <h2>Trip Overview</h2>
-            <p>Planning an unforgettable ski trip to Japan! We're considering two amazing destinations:</p>
-            <div class="row mt-4">
-                <div class="col-md-6 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="card-title">Option 1: Hokkaido</h3>
-                            <p class="card-text">Famous powder snow paradise</p>
+    <main>
+        <section id="overview" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Choose Your Mountain</h2>
+                <p class="text-center mb-5">Two incredible options for our group ski trip</p>
+                
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="resort-card card h-100 shadow-sm">
+                            <div class="card-body">
+                                <div class="text-center mb-3">
+                                    <span class="display-1">🎿</span>
+                                </div>
+                                <h3 class="card-title text-center">Hokkaido</h3>
+                                <h5 class="text-center text-muted mb-3">Niseko / Rusutsu</h5>
+                                <ul class="list-unstyled">
+                                    <li>✨ World-famous powder snow</li>
+                                    <li>🌙 Night skiing available</li>
+                                    <li>♨️ Natural hot springs</li>
+                                    <li>🍜 International cuisine</li>
+                                </ul>
+                                <div class="cost-badge text-center mt-3 p-2 rounded">
+                                    <small>Estimated per person</small><br>
+                                    <strong>$2,500 - $3,500</strong>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="card-title">Option 2: Nagano</h3>
-                            <p class="card-text">Olympic legacy with varied terrain</p>
+                    
+                    <div class="col-lg-6">
+                        <div class="resort-card card h-100 shadow-sm">
+                            <div class="card-body">
+                                <div class="text-center mb-3">
+                                    <span class="display-1">⛷️</span>
+                                </div>
+                                <h3 class="card-title text-center">Nagano</h3>
+                                <h5 class="text-center text-muted mb-3">Hakuba Valley</h5>
+                                <ul class="list-unstyled">
+                                    <li>🏔️ 10 connected resorts</li>
+                                    <li>🥇 1998 Olympics venue</li>
+                                    <li>🏮 Traditional atmosphere</li>
+                                    <li>🚄 Easy Tokyo access</li>
+                                </ul>
+                                <div class="cost-badge text-center mt-3 p-2 rounded">
+                                    <small>Estimated per person</small><br>
+                                    <strong>$2,000 - $2,800</strong>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <section id="details" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-4">Trip Details</h2>
+                <div class="row">
+                    <div class="col-md-4 text-center mb-4">
+                        <div class="detail-icon">✈️</div>
+                        <h4>Flights</h4>
+                        <p>From London, HK, Singapore, KL, Shanghai</p>
+                    </div>
+                    <div class="col-md-4 text-center mb-4">
+                        <div class="detail-icon">🏨</div>
+                        <h4>Accommodation</h4>
+                        <p>7 nights, various options</p>
+                    </div>
+                    <div class="col-md-4 text-center mb-4">
+                        <div class="detail-icon">🎿</div>
+                        <h4>Ski Pass</h4>
+                        <p>6 days all-mountain access</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="budget" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Budget Calculator</h2>
+                <p class="text-center">Coming soon - interactive cost breakdown by departure city</p>
+                <div class="text-center mt-4">
+                    <button class="btn btn-primary btn-lg disabled">Calculate My Costs</button>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2024 Japan Ski Trip Planning</p>
+    <footer class="bg-dark text-white text-center py-4">
+        <p class="mb-0">Let's make this happen! 🎿</p>
+        <small>© 2024 Japan Ski Trip Planning</small>
     </footer>
 
     <!-- Bootstrap JS -->
