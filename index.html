@@ -368,6 +368,21 @@
                                 <input type="range" class="form-range" min="1" max="6" value="2" id="lessonDays">
                             </div>
                         </div>
+
+                        <!-- Transport Options -->
+                        <div class="cost-section mb-4">
+                            <h5 class="mb-3">🚗 Airport Transport</h5>
+                            <div class="btn-group w-100" role="group">
+                                <input type="radio" class="btn-check" name="transportType" id="transportPublic" value="public" checked>
+                                <label class="btn btn-outline-primary" for="transportPublic">Public Transport</label>
+                                
+                                <input type="radio" class="btn-check" name="transportType" id="transportRental" value="rental">
+                                <label class="btn btn-outline-primary" for="transportRental">Rental Car (4 share)</label>
+                            </div>
+                            <div class="mt-2 p-2 bg-light rounded" style="font-size: 0.85rem;">
+                                <span id="transportDetails">Shinkansen + bus from Tokyo</span>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-lg-4">

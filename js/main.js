@@ -269,7 +269,10 @@ const COSTS = {
             premium: 120 // per day
         },
         lessons: 150, // per day
-        transport: 66  // Bus from Sapporo CTS to Niseko (¥5000 each way = ¥10000 return)
+        transport: {
+            public: 66,   // Bus from Sapporo CTS to Niseko (¥10000 return)
+            rental: 145   // £110/person car rental + fuel (¥3520) = $139 + $6 fuel
+        }
     },
     nagano: {
         flights: {
@@ -297,7 +300,10 @@ const COSTS = {
             premium: 100 // per day
         },
         lessons: 120, // per day
-        transport: 153  // Shinkansen + bus from Tokyo (¥11500 each way = ¥23000 return)
+        transport: {
+            public: 153,  // Shinkansen + bus from Tokyo (¥23000 return)
+            rental: 225   // £150/person car + fuel (¥8960) + tolls (¥12000) = $190 + $15 + $20
+        }
     }
 };
 
@@ -333,6 +339,25 @@ function updateComponentDescriptions() {
     if (foodDetails) {
         foodDetails.textContent = foodDescriptions[foodLevel];
     }
+    
+    // Update transport details
+    const transportType = document.querySelector('input[name="transportType"]:checked')?.value || 'public';
+    const transportDetails = document.getElementById('transportDetails');
+    if (transportDetails) {
+        if (resortName === 'hokkaido') {
+            if (transportType === 'rental') {
+                transportDetails.innerHTML = `7-seater rental (£110pp) + fuel • <strong>Freedom to explore!</strong>`;
+            } else {
+                transportDetails.innerHTML = `Return bus from Sapporo airport • Most economical`;
+            }
+        } else {
+            if (transportType === 'rental') {
+                transportDetails.innerHTML = `7-seater rental (£150pp) + fuel/tolls • <strong>Access to chalets!</strong>`;
+            } else {
+                transportDetails.innerHTML = `Shinkansen + bus • Fastest option (2.5hrs)`;
+            }
+        }
+    }
 }
 
 // Calculate and update costs
@@ -349,6 +374,7 @@ function calculateCosts() {
     const foodLevel = document.querySelector('input[name="food"]:checked').value;
     const needLessons = document.getElementById('needLessons').checked;
     const lessonDays = parseInt(document.getElementById('lessonDays').value);
+    const transportType = document.querySelector('input[name="transportType"]:checked')?.value || 'public';
     
     // Update component descriptions
     updateComponentDescriptions();
@@ -360,7 +386,7 @@ function calculateCosts() {
     const equipmentCost = needRental ? resort.rental[rentalType] * skiDays : 0;
     const foodCost = resort.food[foodLevel] * 7; // 7 days
     const lessonCost = needLessons ? resort.lessons * lessonDays : 0;
-    const transportCost = resort.transport;
+    const transportCost = resort.transport[transportType] || resort.transport.public;
     
     const totalCost = flightCost + accoCost + passCost + equipmentCost + foodCost + lessonCost + transportCost;
     
@@ -440,7 +466,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // Radio button listeners
     document.querySelectorAll('input[type="radio"]').forEach(radio => {
-        radio.addEventListener('change', calculateCosts);
+        radio.addEventListener('change', () => {
+            updateComponentDescriptions();
+            calculateCosts();
+        });
     });
     
     // Ski days slider
