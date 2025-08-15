@@ -92,10 +92,32 @@ function updateCountdown() {
     if (diff > 0) {
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
         
         const countdownEl = document.getElementById('countdown');
         if (countdownEl) {
-            countdownEl.innerHTML = `<strong>${days}</strong> days and <strong>${hours}</strong> hours until departure!`;
+            countdownEl.innerHTML = `
+                <div class="countdown-title">⏰ Departure in:</div>
+                <div class="countdown-numbers">
+                    <span class="countdown-block">
+                        <strong>${days}</strong>
+                        <small>days</small>
+                    </span>
+                    <span class="countdown-block">
+                        <strong>${hours}</strong>
+                        <small>hours</small>
+                    </span>
+                    <span class="countdown-block">
+                        <strong>${minutes}</strong>
+                        <small>mins</small>
+                    </span>
+                    <span class="countdown-block">
+                        <strong>${seconds}</strong>
+                        <small>secs</small>
+                    </span>
+                </div>
+            `;
         }
     }
 }
@@ -174,7 +196,7 @@ function calculateTotalCost(accommodation, foodLevel, includeRental) {
 document.addEventListener('DOMContentLoaded', async function() {
     // Start countdown
     updateCountdown();
-    setInterval(updateCountdown, 60000); // Update every minute
+    setInterval(updateCountdown, 1000); // Update every second
     
     // Initialize scroll progress
     updateScrollProgress();

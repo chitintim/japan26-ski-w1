@@ -175,12 +175,46 @@ body {
 }
 
 /* Countdown */
-#countdown {
-    font-size: 1.3rem;
-    font-weight: 500;
+.countdown-container {
+    max-width: 600px;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
-    display: inline-block;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.countdown-title {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    opacity: 0.95;
+}
+
+.countdown-numbers {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.countdown-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+}
+
+.countdown-block strong {
+    font-size: 2.5rem;
+    line-height: 1;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.countdown-block small {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    margin-top: 5px;
 }
 
 /* Improved Typography */
@@ -206,6 +240,18 @@ body {
     
     .personal-message p:first-child {
         font-size: 1.2rem;
+    }
+    
+    .countdown-block strong {
+        font-size: 2rem;
+    }
+    
+    .countdown-block small {
+        font-size: 0.75rem;
+    }
+    
+    .countdown-numbers {
+        gap: 15px;
     }
     
     .skier {
