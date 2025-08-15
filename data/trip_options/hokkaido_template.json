@@ -1,0 +1,67 @@
+{
+  "resort_name": "Niseko / Rusutsu",
+  "region": "Hokkaido",
+  "dates": "March 22-29, 2026",
+  
+  "highlights": [
+    "World-famous powder snow",
+    "Night skiing available",
+    "Onsen (hot springs) nearby",
+    "International food options"
+  ],
+  
+  "costs_per_person": {
+    "accommodation_7_nights": {
+      "budget": 700,
+      "mid_range": 1200,
+      "premium": 2000,
+      "currency": "USD",
+      "notes": "Shared rooms vs private"
+    },
+    "ski_pass_6_days": {
+      "adult": 650,
+      "currency": "USD"
+    },
+    "equipment_rental_6_days": {
+      "standard": 250,
+      "premium": 400,
+      "currency": "USD"
+    },
+    "food_per_day": {
+      "budget": 40,
+      "mid_range": 70,
+      "currency": "USD"
+    },
+    "local_transport": {
+      "airport_transfer": 150,
+      "daily_shuttle": "Free",
+      "currency": "USD"
+    }
+  },
+  
+  "flights_from": {
+    "note": "See flight_data folder for detailed options from each city"
+  },
+  
+  "terrain": {
+    "beginner": "30%",
+    "intermediate": "40%",
+    "advanced": "30%",
+    "total_runs": 70,
+    "total_lifts": 30
+  },
+  
+  "pros": [
+    "Best powder in Japan",
+    "Great nightlife",
+    "English-friendly"
+  ],
+  
+  "cons": [
+    "Can be crowded",
+    "More expensive",
+    "Longer transfer from airport"
+  ],
+  
+  "images": []
+}

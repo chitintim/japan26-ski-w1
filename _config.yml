@@ -1,0 +1,18 @@
+# GitHub Pages Configuration
+title: Japan Ski Trip 2026
+description: Group ski trip to Japan - March 22-29, 2026
+baseurl: "/japan26-ski-w1"
+url: "https://chitintim.github.io"
+
+# Build settings
+theme: null  # Using custom HTML/CSS instead of Jekyll theme
+
+# Exclude files from build
+exclude:
+  - README.md
+  - CLAUDE.md
+  - .gitignore
+  - notes/
+  - research/
+  - context/
+  - "*.claude.md"

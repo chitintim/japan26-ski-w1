@@ -1,0 +1,43 @@
+{
+  "departure_city": "City Name",
+  "departure_code": "XXX",
+  
+  "to_hokkaido": {
+    "destination_airport": "New Chitose (CTS)",
+    "flight_options": [
+      {
+        "route": "Direct or via city",
+        "airline": "Airline name",
+        "estimated_cost": 0,
+        "duration": "X hours",
+        "notes": "Any special notes"
+      }
+    ],
+    "best_option": {
+      "cost": 0,
+      "duration": "X hours",
+      "booking_tip": "Book by when for best prices"
+    }
+  },
+  
+  "to_nagano": {
+    "destination_airport": "Tokyo Narita (NRT) or Haneda (HND)",
+    "flight_options": [
+      {
+        "route": "Direct or via city",
+        "airline": "Airline name",
+        "estimated_cost": 0,
+        "duration": "X hours",
+        "notes": "Plus 3-4 hours to Hakuba"
+      }
+    ],
+    "best_option": {
+      "cost": 0,
+      "duration": "X hours total",
+      "booking_tip": "Book by when for best prices"
+    }
+  },
+  
+  "currency": "USD",
+  "last_updated": "2024-12-XX"
+}

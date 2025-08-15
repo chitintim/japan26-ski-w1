@@ -1,0 +1,69 @@
+{
+  "resort_name": "Hakuba Valley",
+  "region": "Nagano",
+  "dates": "March 22-29, 2026",
+  
+  "highlights": [
+    "10 connected resorts",
+    "1998 Winter Olympics venue",
+    "Traditional Japanese atmosphere",
+    "Closer to Tokyo"
+  ],
+  
+  "costs_per_person": {
+    "accommodation_7_nights": {
+      "budget": 600,
+      "mid_range": 1000,
+      "premium": 1600,
+      "currency": "USD",
+      "notes": "Shared rooms vs private"
+    },
+    "ski_pass_6_days": {
+      "adult": 550,
+      "currency": "USD",
+      "notes": "Hakuba Valley Pass"
+    },
+    "equipment_rental_6_days": {
+      "standard": 220,
+      "premium": 350,
+      "currency": "USD"
+    },
+    "food_per_day": {
+      "budget": 35,
+      "mid_range": 60,
+      "currency": "USD"
+    },
+    "local_transport": {
+      "airport_transfer": 100,
+      "daily_shuttle": "Free between resorts",
+      "currency": "USD"
+    }
+  },
+  
+  "flights_from": {
+    "note": "See flight_data folder for detailed options from each city"
+  },
+  
+  "terrain": {
+    "beginner": "35%",
+    "intermediate": "45%",
+    "advanced": "20%",
+    "total_runs": 200,
+    "total_lifts": 100
+  },
+  
+  "pros": [
+    "More affordable",
+    "Variety of resorts",
+    "Authentic Japanese experience",
+    "Easier airport access"
+  ],
+  
+  "cons": [
+    "Snow quality varies",
+    "Less English support",
+    "Quieter nightlife"
+  ],
+  
+  "images": []
+}

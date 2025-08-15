@@ -1,0 +1,43 @@
+# AI Context Files (for Claude Code)
+CLAUDE.md
+.claude/
+*.claude.md
+context/
+research/
+notes/
+
+# Personal/Sensitive Data
+personal_notes/
+private/
+*.private.json
+*.sensitive.json
+flight_bookings/
+actual_bookings/
+
+# Development Files
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Dependencies (if we add any later)
+node_modules/
+vendor/
+
+# Build outputs
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Local development
+*.local
+localhost/
