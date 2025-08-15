@@ -23,9 +23,9 @@ function updateScrollProgress() {
     
     const indicator = document.querySelector('.mountain-indicator');
     if (indicator) {
-        // Move the mountain up as user scrolls down
-        const translateY = -scrollPercentage * 3; // Multiply for more movement
-        indicator.style.transform = `translateY(${translateY}px) scale(${1 + scrollPercentage / 200})`;
+        // Move the mountain down as user scrolls down
+        const translateY = scrollPercentage * 2; // Mountain goes down with scroll
+        indicator.style.transform = `translateY(${translateY}px) scale(${1 + scrollPercentage / 300})`;
     }
 }
 
