@@ -459,7 +459,7 @@ function loadAccommodationPhotos() {
         <div class="col-md-4 col-sm-6 mb-3">
             <div class="photo-card">
                 <img src="images/accommodation/${photo.file}" 
-                     alt="${photo.caption}" 
+                     alt="Accommodation example" 
                      class="img-fluid rounded shadow-sm"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <div class="photo-placeholder rounded" style="display:none;">
@@ -467,7 +467,6 @@ function loadAccommodationPhotos() {
                         <small class="text-muted">📷 ${photo.file}</small>
                     </div>
                 </div>
-                <p class="text-center mt-2 small">${photo.caption}</p>
             </div>
         </div>
     `).join('');

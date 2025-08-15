@@ -408,6 +408,8 @@ body {
 /* Photo Gallery */
 .photo-card {
     position: relative;
+    overflow: hidden;
+    border-radius: 8px;
 }
 
 .photo-card img {
@@ -429,6 +431,25 @@ body {
     align-items: center;
     justify-content: center;
     border: 2px dashed #ccc;
+}
+
+/* Mobile photo gallery adjustments */
+@media (max-width: 768px) {
+    .photo-card img {
+        height: 200px;
+    }
+    
+    .photo-placeholder {
+        height: 200px;
+    }
+    
+    .photo-gallery {
+        padding: 0 10px;
+    }
+    
+    .photo-gallery .col-sm-6 {
+        padding: 0 5px;
+    }
 }
 
 /* Footer */
