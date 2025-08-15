@@ -274,7 +274,7 @@ const COSTS = {
             mid: 70,     // per day
             premium: 120 // per day
         },
-        lessons: 150, // per day
+        lessons: 100, // per day - Niseko group lessons ¥15,000
         transport: {
             public: 66,   // Bus from Sapporo CTS to Niseko (¥10000 return)
             rental: 145   // £110/person car rental + fuel (¥3520) = $139 + $6 fuel
@@ -311,7 +311,7 @@ const COSTS = {
             mid: 60,     // per day
             premium: 100 // per day
         },
-        lessons: 120, // per day
+        lessons: 80, // per day - Hakuba group lessons ¥10,000-12,000
         transport: {
             public: 153,  // Shinkansen + bus from Tokyo (¥23000 return)
             rental: 225   // £150/person car + fuel (¥8960) + tolls (¥12000) = $190 + $15 + $20
@@ -438,6 +438,50 @@ function shareCosts() {
     alert('Sharing functionality coming soon! For now, take a screenshot 📸');
 }
 
+// Load accommodation photos
+function loadAccommodationPhotos() {
+    const gallery = document.getElementById('photoGallery');
+    if (!gallery) return;
+    
+    // Actual photo filenames from images/accommodation/
+    const photos = [
+        { file: '414716637.jpg', caption: 'Example accommodation' },
+        { file: '414716640.jpg', caption: 'Standard we\'re looking for' },
+        { file: '425406191.jpg', caption: 'Typical chalet/hotel option' },
+        { file: '558064440.jpg', caption: 'Accommodation example' },
+        { file: 'a6a8847a-71fb-41ab-a8ab-67f14493d66f.jpeg', caption: 'Another option' },
+        { file: 'e069a6c8-79e8-4c8a-ae1d-f4224f2105f6.jpeg', caption: 'Potential accommodation' },
+        { file: '756d09af-d9e4-4dc0-9173-70d92ee54c04.jpeg.avif', caption: 'Example standard' }
+    ];
+    
+    // Check if images folder exists and has photos
+    const photoHTML = photos.map(photo => `
+        <div class="col-md-4 col-sm-6 mb-3">
+            <div class="photo-card">
+                <img src="images/accommodation/${photo.file}" 
+                     alt="${photo.caption}" 
+                     class="img-fluid rounded shadow-sm"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="photo-placeholder rounded" style="display:none;">
+                    <div class="text-center p-4">
+                        <small class="text-muted">📷 ${photo.file}</small>
+                    </div>
+                </div>
+                <p class="text-center mt-2 small">${photo.caption}</p>
+            </div>
+        </div>
+    `).join('');
+    
+    gallery.innerHTML = photoHTML || `
+        <div class="col-12 text-center">
+            <div class="alert alert-info">
+                <p class="mb-0">📁 Add photos to <code>images/accommodation/</code> folder</p>
+                <small>Suggested: chalet-exterior.jpg, chalet-living.jpg, hotel-aya.jpg, bedroom-twin.jpg</small>
+            </div>
+        </div>
+    `;
+}
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', async function() {
     // Start countdown
@@ -453,6 +497,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // Load trip data
     loadTripData();
+    
+    // Load accommodation photos
+    loadAccommodationPhotos();
     
     // Initialize currency selector
     const currencySelector = document.getElementById('currencySelector');

@@ -83,7 +83,7 @@
                                 </ul>
                                 <div class="cost-badge text-center mt-3 p-2 rounded">
                                     <small>Estimated per person</small><br>
-                                    <strong class="price-display" data-min="2500" data-max="3500">$2,500 - $3,500</strong>
+                                    <strong class="price-display" data-min="2400" data-max="3700">$2,400 - $3,700</strong>
                                 </div>
                                 <button class="btn btn-primary w-100 mt-3 select-resort-btn" data-resort="hokkaido" onclick="selectResort('hokkaido')">
                                     Calculate My Costs for Hokkaido
@@ -108,7 +108,7 @@
                                 </ul>
                                 <div class="cost-badge text-center mt-3 p-2 rounded">
                                     <small>Estimated per person</small><br>
-                                    <strong class="price-display" data-min="2000" data-max="2800">$2,000 - $2,800</strong>
+                                    <strong class="price-display" data-min="2300" data-max="3600">$2,300 - $3,600</strong>
                                 </div>
                                 <button class="btn btn-primary w-100 mt-3 select-resort-btn" data-resort="nagano" onclick="selectResort('nagano')">
                                     Calculate My Costs for Nagano
@@ -242,25 +242,24 @@
             </div>
         </section>
 
-        <section id="details" class="py-5 bg-light">
+        <section id="accommodation-preview" class="py-5 bg-light">
             <div class="container">
-                <h2 class="text-center mb-4">Trip Details</h2>
-                <div class="row">
-                    <div class="col-md-4 text-center mb-4">
-                        <div class="detail-icon">✈️</div>
-                        <h4>Flights</h4>
-                        <p>From London, HK, Singapore, KL, Shanghai</p>
+                <h2 class="text-center mb-4">Accommodation Ideas 🏠</h2>
+                <p class="text-center mb-5">Here's what I'm looking at for our stay</p>
+                
+                <div class="photo-gallery row g-3" id="photoGallery">
+                    <!-- Photos will be loaded dynamically from images/accommodation/ folder -->
+                    <div class="col-12 text-center text-muted">
+                        <p>Loading accommodation photos...</p>
+                        <small>Place photos in images/accommodation/ folder</small>
                     </div>
-                    <div class="col-md-4 text-center mb-4">
-                        <div class="detail-icon">🏨</div>
-                        <h4>Accommodation</h4>
-                        <p>7 nights, various options</p>
-                    </div>
-                    <div class="col-md-4 text-center mb-4">
-                        <div class="detail-icon">🎿</div>
-                        <h4>Ski Pass</h4>
-                        <p>6 days all-mountain access</p>
-                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <p class="text-muted">
+                        <em>Photos show examples of the type of chalets and hotels we're considering.<br>
+                        Final bookings will depend on group size and preferences.</em>
+                    </p>
                 </div>
             </div>
         </section>
