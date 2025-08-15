@@ -51,6 +51,30 @@ body {
     font-weight: 500;
 }
 
+/* Currency Selector */
+.currency-selector-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+}
+
+#currencySelector {
+    width: 120px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    padding: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#currencySelector:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
 /* Scroll Progress Indicator */
 .scroll-progress-container {
     position: fixed;
@@ -71,6 +95,17 @@ body {
 
 /* Mobile: Put indicator at top */
 @media (max-width: 768px) {
+    .currency-selector-container {
+        top: 10px;
+        left: 10px;
+    }
+    
+    #currencySelector {
+        width: 100px;
+        font-size: 0.9rem;
+        padding: 6px;
+    }
+    
     .scroll-progress-container {
         top: 10px;
         right: 10px;

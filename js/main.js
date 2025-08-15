@@ -1,3 +1,88 @@
+// Currency configuration
+const EXCHANGE_RATES = {
+    USD: 1,           // Base currency
+    GBP: 0.79,        // £1 = $1.27
+    HKD: 7.80,        // HK$1 = $0.13
+    SGD: 1.35,        // S$1 = $0.74
+    MYR: 4.47,        // RM1 = $0.22
+    CNY: 7.24,        // ¥1 = $0.14
+    JPY: 149.50       // ¥1 = $0.0067
+};
+
+const CURRENCY_SYMBOLS = {
+    USD: '$',
+    GBP: '£',
+    HKD: 'HK$',
+    SGD: 'S$',
+    MYR: 'RM',
+    CNY: '¥',
+    JPY: '¥'
+};
+
+// Detect user location and set currency
+async function detectUserCurrency() {
+    try {
+        // Try timezone-based detection first
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        
+        if (timezone.includes('London') || timezone.includes('Europe/London')) {
+            return 'GBP';
+        } else if (timezone.includes('Hong_Kong')) {
+            return 'HKD';
+        } else if (timezone.includes('Singapore')) {
+            return 'SGD';
+        } else if (timezone.includes('Kuala_Lumpur')) {
+            return 'MYR';
+        } else if (timezone.includes('Shanghai') || timezone.includes('Beijing')) {
+            return 'CNY';
+        } else if (timezone.includes('Tokyo')) {
+            return 'JPY';
+        }
+        
+        // Fallback to GBP as default
+        return 'GBP';
+    } catch (error) {
+        console.log('Could not detect location, defaulting to GBP');
+        return 'GBP';
+    }
+}
+
+// Format currency based on selection
+function formatCurrency(amount, currency) {
+    const symbol = CURRENCY_SYMBOLS[currency];
+    const converted = amount * EXCHANGE_RATES[currency];
+    
+    // Special formatting for JPY and CNY (no decimals)
+    if (currency === 'JPY' || currency === 'CNY') {
+        return `${symbol}${Math.round(converted).toLocaleString()}`;
+    }
+    
+    // Format with appropriate decimals
+    return `${symbol}${converted.toLocaleString('en', { 
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0 
+    })}`;
+}
+
+// Update all prices on the page
+function updatePrices(currency) {
+    const priceElements = document.querySelectorAll('.price-display');
+    
+    priceElements.forEach(element => {
+        const min = parseFloat(element.dataset.min);
+        const max = parseFloat(element.dataset.max);
+        
+        if (min && max) {
+            const minFormatted = formatCurrency(min, currency);
+            const maxFormatted = formatCurrency(max, currency);
+            element.textContent = `${minFormatted} - ${maxFormatted}`;
+        }
+    });
+    
+    // Store preference
+    localStorage.setItem('preferredCurrency', currency);
+}
+
 // Countdown timer to trip date
 function updateCountdown() {
     const tripDate = new Date('2026-03-22T00:00:00');
@@ -86,7 +171,7 @@ function calculateTotalCost(accommodation, foodLevel, includeRental) {
 }
 
 // Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     // Start countdown
     updateCountdown();
     setInterval(updateCountdown, 60000); // Update every minute
@@ -100,6 +185,29 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Load trip data
     loadTripData();
+    
+    // Initialize currency selector
+    const currencySelector = document.getElementById('currencySelector');
+    if (currencySelector) {
+        // Check for saved preference first
+        let preferredCurrency = localStorage.getItem('preferredCurrency');
+        
+        // If no saved preference, detect based on location
+        if (!preferredCurrency) {
+            preferredCurrency = await detectUserCurrency();
+        }
+        
+        // Set the selector to the preferred currency
+        currencySelector.value = preferredCurrency;
+        
+        // Update prices to match
+        updatePrices(preferredCurrency);
+        
+        // Listen for currency changes
+        currencySelector.addEventListener('change', (e) => {
+            updatePrices(e.target.value);
+        });
+    }
     
     // Add smooth scroll behavior for any internal links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

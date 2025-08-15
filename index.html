@@ -13,6 +13,19 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- Currency Selector -->
+    <div class="currency-selector-container">
+        <select id="currencySelector" class="form-select form-select-sm">
+            <option value="GBP">£ GBP</option>
+            <option value="USD">$ USD</option>
+            <option value="HKD">HK$ HKD</option>
+            <option value="SGD">S$ SGD</option>
+            <option value="MYR">RM MYR</option>
+            <option value="CNY">¥ CNY</option>
+            <option value="JPY">¥ JPY</option>
+        </select>
+    </div>
+
     <!-- Scroll Progress Indicator -->
     <div class="scroll-progress-container">
         <div class="mountain-indicator">🏔️</div>
@@ -70,7 +83,7 @@
                                 </ul>
                                 <div class="cost-badge text-center mt-3 p-2 rounded">
                                     <small>Estimated per person</small><br>
-                                    <strong>$2,500 - $3,500</strong>
+                                    <strong class="price-display" data-min="2500" data-max="3500">$2,500 - $3,500</strong>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +105,7 @@
                                 </ul>
                                 <div class="cost-badge text-center mt-3 p-2 rounded">
                                     <small>Estimated per person</small><br>
-                                    <strong>$2,000 - $2,800</strong>
+                                    <strong class="price-display" data-min="2000" data-max="2800">$2,000 - $2,800</strong>
                                 </div>
                             </div>
                         </div>
