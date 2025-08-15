@@ -387,6 +387,24 @@ function updateComponentDescriptions() {
                                         ${formatCurrency(passPrice, currency)} total • ${formatCurrency(perDay, currency)}/day`;
         }
     }
+    
+    // Update lesson details
+    const needLessons = document.getElementById('needLessons')?.checked;
+    const lessonDays = parseInt(document.getElementById('lessonDays')?.value || 2);
+    const lessonDetails = document.getElementById('lessonDetails');
+    if (lessonDetails && needLessons) {
+        const currency = document.getElementById('currencySelector').value;
+        const dailyRate = resort.lessons;
+        const totalLessonCost = dailyRate * lessonDays;
+        
+        if (resortName === 'hokkaido') {
+            lessonDetails.innerHTML = `Group lessons (2.5hrs morning) • ¥15,000/day<br>
+                                       ${formatCurrency(dailyRate, currency)}/day • ${formatCurrency(totalLessonCost, currency)} total`;
+        } else {
+            lessonDetails.innerHTML = `Group lessons (2.5hrs morning) • ¥10,000-12,000/day<br>
+                                       ${formatCurrency(dailyRate, currency)}/day • ${formatCurrency(totalLessonCost, currency)} total`;
+        }
+    }
 }
 
 // Calculate and update costs
@@ -562,6 +580,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (lessonDaysSlider) {
         lessonDaysSlider.addEventListener('input', (e) => {
             document.getElementById('lessonDaysValue').textContent = e.target.value;
+            updateComponentDescriptions();
             calculateCosts();
         });
     }
@@ -580,6 +599,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (needLessons) {
         needLessons.addEventListener('change', (e) => {
             document.getElementById('lessonOptions').style.display = e.target.checked ? 'block' : 'none';
+            updateComponentDescriptions();
             calculateCosts();
         });
     }
