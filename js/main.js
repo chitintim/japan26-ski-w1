@@ -195,6 +195,7 @@ function selectResort(resort) {
     const budgetSection = document.getElementById('budget');
     const resortName = document.getElementById('selectedResortName');
     const transportInfo = document.getElementById('transportInfo');
+    const accoDescription = document.getElementById('accoDescription');
     
     // Update resort name
     resortName.textContent = resort === 'hokkaido' ? 'Hokkaido' : 'Nagano';
@@ -206,11 +207,23 @@ function selectResort(resort) {
             • Direct flights from HK/SG/KL/Shanghai<br>
             • London requires connection via Tokyo
         `;
+        accoDescription.innerHTML = `
+            <strong>Tim's Requirements:</strong> Max 2 per room, walking distance/ski-in/out<br>
+            <strong>Budget:</strong> Shared Airbnb (4BR/8ppl) - £508/person<br>
+            <strong>Mid:</strong> Standard ski-in/out condos<br>
+            <strong>Premium:</strong> Hotel Aya w/ private onsen - ¥187k/person
+        `;
     } else {
         transportInfo.innerHTML = `
             • Shinkansen from Tokyo to Nagano<br>
             • Bus from Nagano to Hakuba<br>
             • All cities fly to Tokyo (Narita/Haneda)
+        `;
+        accoDescription.innerHTML = `
+            <strong>Tim's Requirements:</strong> Max 2 per room, walking distance/ski-in/out<br>
+            <strong>Budget:</strong> Shared lodges or hostels<br>
+            <strong>Mid:</strong> Standard hotels near lifts<br>
+            <strong>Premium:</strong> Luxury ski-in/out hotels
         `;
     }
     
@@ -227,7 +240,7 @@ function selectResort(resort) {
 }
 
 // Updated costs based on 2024 research (in USD)
-// Exchange rate used: 150 JPY = 1 USD
+// Exchange rates: 150 JPY = 1 USD, 0.79 GBP = 1 USD
 const COSTS = {
     hokkaido: {
         flights: {
@@ -239,9 +252,10 @@ const COSTS = {
             shanghai: 750    // Direct to Sapporo available
         },
         accommodation: {
-            budget: 700,
-            mid: 1200,
-            premium: 2000
+            // Tim's requirements: max 2 per room, walking distance to lifts, prefer ski-in/out
+            budget: 643,     // £508.50 - Airbnb shared (4BR/8ppl), 7 nights
+            mid: 950,        // Standard hotels/condos, ski-in/out or very close
+            premium: 1248    // ¥187,200 - Hotel Aya w/ private onsen & sauna, ski-in/out
         },
         skiPass: 110, // per day
         rental: {
