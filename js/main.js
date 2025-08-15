@@ -194,9 +194,25 @@ async function loadTripData() {
 function selectResort(resort) {
     const budgetSection = document.getElementById('budget');
     const resortName = document.getElementById('selectedResortName');
+    const transportInfo = document.getElementById('transportInfo');
     
     // Update resort name
     resortName.textContent = resort === 'hokkaido' ? 'Hokkaido' : 'Nagano';
+    
+    // Update transport info
+    if (resort === 'hokkaido') {
+        transportInfo.innerHTML = `
+            • Return bus from Sapporo CTS airport<br>
+            • Direct flights from HK/SG/KL/Shanghai<br>
+            • London requires connection via Tokyo
+        `;
+    } else {
+        transportInfo.innerHTML = `
+            • Shinkansen from Tokyo to Nagano<br>
+            • Bus from Nagano to Hakuba<br>
+            • All cities fly to Tokyo (Narita/Haneda)
+        `;
+    }
     
     // Show the budget section
     budgetSection.style.display = 'block';
@@ -210,15 +226,17 @@ function selectResort(resort) {
     calculateCosts();
 }
 
-// Placeholder costs (in USD) - you can update these later
+// Updated costs based on 2024 research (in USD)
+// Exchange rate used: 150 JPY = 1 USD
 const COSTS = {
     hokkaido: {
         flights: {
-            london: 1200,
-            hongkong: 800,
-            singapore: 900,
-            kl: 950,
-            shanghai: 750
+            // Includes connection via Tokyo if no direct flight + domestic flight to Sapporo
+            london: 1400,    // Via Tokyo + domestic to Sapporo
+            hongkong: 850,   // Direct to Sapporo available
+            singapore: 950,  // Direct to Sapporo available  
+            kl: 1000,        // Direct to Sapporo available
+            shanghai: 750    // Direct to Sapporo available
         },
         accommodation: {
             budget: 700,
@@ -236,10 +254,11 @@ const COSTS = {
             premium: 120 // per day
         },
         lessons: 150, // per day
-        transport: 150
+        transport: 66  // Bus from Sapporo CTS to Niseko (¥5000 each way = ¥10000 return)
     },
     nagano: {
         flights: {
+            // All fly to Tokyo (Narita/Haneda)
             london: 1100,
             hongkong: 700,
             singapore: 800,
@@ -262,7 +281,7 @@ const COSTS = {
             premium: 100 // per day
         },
         lessons: 120, // per day
-        transport: 100
+        transport: 153  // Shinkansen + bus from Tokyo (¥11500 each way = ¥23000 return)
     }
 };
 
