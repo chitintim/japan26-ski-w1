@@ -261,6 +261,100 @@ body {
     .detail-icon {
         font-size: 2.5rem;
     }
+    
+    .comparison-card {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .comparison-item {
+        font-size: 0.9rem;
+    }
+    
+    .verdict-box {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Comparison Section */
+.comparison-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.comparison-section {
+    margin-bottom: 25px;
+}
+
+.comparison-header {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.comparison-item {
+    padding: 8px 15px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    position: relative;
+    padding-left: 35px;
+}
+
+.comparison-item::before {
+    position: absolute;
+    left: 12px;
+    font-weight: bold;
+}
+
+.comparison-item.pro {
+    background: rgba(39, 174, 96, 0.1);
+    border-left: 3px solid #27ae60;
+}
+
+.comparison-item.pro::before {
+    content: "✓";
+    color: #27ae60;
+}
+
+.comparison-item.con {
+    background: rgba(231, 76, 60, 0.1);
+    border-left: 3px solid #e74c3c;
+}
+
+.comparison-item.con::before {
+    content: "✗";
+    color: #e74c3c;
+}
+
+.comparison-item.neutral {
+    background: rgba(52, 152, 219, 0.1);
+    border-left: 3px solid #3498db;
+}
+
+.comparison-item.neutral::before {
+    content: "–";
+    color: #3498db;
+}
+
+.verdict-box {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.final-verdict {
+    background: #f8f9fa;
+    border-radius: 15px;
+    border: 2px solid #e9ecef;
 }
 
 /* Cost Builder Section */
