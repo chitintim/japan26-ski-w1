@@ -221,9 +221,10 @@ function selectResort(resort) {
         `;
         accoDescription.innerHTML = `
             <strong>Tim's Requirements:</strong> Max 2 per room, walking distance/ski-in/out<br>
-            <strong>Budget:</strong> Shared lodges or hostels<br>
-            <strong>Mid:</strong> Standard hotels near lifts<br>
-            <strong>Premium:</strong> Luxury ski-in/out hotels
+            <strong>Budget:</strong> 7-person chalet (£3,670 total) - needs car to gondola<br>
+            <strong>Mid:</strong> 8-person chalet, 4BR/4bath (£4,621 total)<br>
+            <strong>Premium:</strong> Luxury ski-in/out hotels<br>
+            <em>Note: Car rental could reduce transport costs & provide flexibility</em>
         `;
     }
     
@@ -280,9 +281,10 @@ const COSTS = {
             shanghai: 650
         },
         accommodation: {
-            budget: 600,
-            mid: 1000,
-            premium: 1600
+            // Chalets require driving to gondolas - car rental could reduce transport costs
+            budget: 662,     // £3,670 chalet ÷ 7 people = £524/person
+            mid: 731,        // £4,621 chalet ÷ 8 people = £578/person (4BR/4bath)
+            premium: 1200    // Luxury ski-in/out hotels
         },
         skiPass: 92, // per day
         rental: {
@@ -299,6 +301,40 @@ const COSTS = {
     }
 };
 
+// Update component descriptions
+function updateComponentDescriptions() {
+    const resortName = document.getElementById('selectedResortName').textContent.toLowerCase();
+    const resort = COSTS[resortName] || COSTS.hokkaido;
+    
+    // Update flight details
+    const flightFrom = document.getElementById('flightFrom').value;
+    const flightDetails = document.getElementById('flightDetails');
+    const flightCost = resort.flights[flightFrom];
+    const flightInfo = {
+        london: resortName === 'hokkaido' ? 'Via Tokyo + domestic to Sapporo' : 'Direct to Tokyo (Narita/Haneda)',
+        hongkong: resortName === 'hokkaido' ? 'Direct flight to Sapporo available' : 'Direct to Tokyo',
+        singapore: resortName === 'hokkaido' ? 'Direct flight to Sapporo available' : 'Direct to Tokyo',
+        kl: resortName === 'hokkaido' ? 'Direct flight to Sapporo available' : 'Direct to Tokyo',
+        shanghai: resortName === 'hokkaido' ? 'Direct flight to Sapporo available' : 'Direct to Tokyo'
+    };
+    if (flightDetails) {
+        const currency = document.getElementById('currencySelector').value;
+        flightDetails.innerHTML = `${flightInfo[flightFrom]} • <strong>${formatCurrency(flightCost, currency)}</strong> return`;
+    }
+    
+    // Update food details
+    const foodLevel = document.querySelector('input[name="food"]:checked').value;
+    const foodDetails = document.getElementById('foodDetails');
+    const foodDescriptions = {
+        budget: 'Convenience stores, ramen shops, casual dining • $35-40/day',
+        mid: 'Mix of local restaurants and nice dinners • $60-70/day',
+        premium: 'Fine dining, high-end restaurants • $100-120/day'
+    };
+    if (foodDetails) {
+        foodDetails.textContent = foodDescriptions[foodLevel];
+    }
+}
+
 // Calculate and update costs
 function calculateCosts() {
     const resortName = document.getElementById('selectedResortName').textContent.toLowerCase();
@@ -313,6 +349,9 @@ function calculateCosts() {
     const foodLevel = document.querySelector('input[name="food"]:checked').value;
     const needLessons = document.getElementById('needLessons').checked;
     const lessonDays = parseInt(document.getElementById('lessonDays').value);
+    
+    // Update component descriptions
+    updateComponentDescriptions();
     
     // Calculate individual costs
     const flightCost = resort.flights[flightFrom];
