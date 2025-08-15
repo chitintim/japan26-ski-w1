@@ -258,7 +258,13 @@ const COSTS = {
             mid: 950,        // Standard hotels/condos, ski-in/out or very close
             premium: 1248    // ¥187,200 - Hotel Aya w/ private onsen & sauna, ski-in/out
         },
-        skiPass: 110, // per day
+        // Niseko United Spring Rates (30% off) - March 23-April 5
+        skiPass: {
+            4: 189,   // ¥28,350 / 150 = $189
+            5: 236,   // ¥35,350 / 150 = $236
+            6: 282,   // ¥42,350 / 150 = $282
+            7: 329    // ¥49,350 / 150 = $329
+        },
         rental: {
             standard: 42, // per day
             premium: 67  // per day
@@ -289,7 +295,13 @@ const COSTS = {
             mid: 731,        // £4,621 chalet ÷ 8 people = £578/person (4BR/4bath)
             premium: 1200    // Luxury ski-in/out hotels
         },
-        skiPass: 92, // per day
+        // Hakuba Valley Pass - 10 resorts, no spring discount
+        skiPass: {
+            4: 249,   // ¥37,400 / 150 = $249
+            5: 311,   // ¥46,600 / 150 = $311
+            6: 373,   // ¥55,900 / 150 = $373
+            7: 434    // ¥65,100 / 150 = $434
+        },
         rental: {
             standard: 37, // per day
             premium: 58  // per day
@@ -358,6 +370,23 @@ function updateComponentDescriptions() {
             }
         }
     }
+    
+    // Update ski pass details
+    const skiDays = parseInt(document.getElementById('skiDays')?.value || 6);
+    const skiPassDetails = document.getElementById('skiPassDetails');
+    if (skiPassDetails && resort.skiPass[skiDays]) {
+        const passPrice = resort.skiPass[skiDays];
+        const currency = document.getElementById('currencySelector').value;
+        const perDay = Math.round(passPrice / skiDays);
+        
+        if (resortName === 'hokkaido') {
+            skiPassDetails.innerHTML = `Niseko United (4 mountains) • <strong>30% spring discount!</strong><br>
+                                        ${formatCurrency(passPrice, currency)} total • ${formatCurrency(perDay, currency)}/day`;
+        } else {
+            skiPassDetails.innerHTML = `Hakuba Valley Pass (10 resorts)<br>
+                                        ${formatCurrency(passPrice, currency)} total • ${formatCurrency(perDay, currency)}/day`;
+        }
+    }
 }
 
 // Calculate and update costs
@@ -382,7 +411,7 @@ function calculateCosts() {
     // Calculate individual costs
     const flightCost = resort.flights[flightFrom];
     const accoCost = resort.accommodation[accommodation];
-    const passCost = resort.skiPass * skiDays;
+    const passCost = resort.skiPass[skiDays] || resort.skiPass[6]; // Use 6-day as fallback
     const equipmentCost = needRental ? resort.rental[rentalType] * skiDays : 0;
     const foodCost = resort.food[foodLevel] * 7; // 7 days
     const lessonCost = needLessons ? resort.lessons * lessonDays : 0;
@@ -477,6 +506,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (skiDaysSlider) {
         skiDaysSlider.addEventListener('input', (e) => {
             document.getElementById('skiDaysValue').textContent = e.target.value;
+            updateComponentDescriptions();
             calculateCosts();
         });
     }
