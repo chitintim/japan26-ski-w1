@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Japan Ski Trip - March 2026</title>
+    <title>JaPOW 2026 ❄️ - March Ski Trip</title>
     <meta name="description" content="Join us for an epic ski trip to Japan, March 22-29, 2026">
     
     <!-- Bootstrap CSS for mobile-first responsive design -->
@@ -38,7 +38,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10">
-                    <h1 class="display-4 fw-bold mb-4 text-center">Japan Ski Trip 2026</h1>
+                    <h1 class="display-4 fw-bold mb-4 text-center">JaPOW 2026 ❄️</h1>
                     <p class="lead text-center mb-4">March 22-29 • One Week of Proper Skiing</p>
                     
                     <div class="personal-message mb-4">
@@ -85,6 +85,9 @@
                                     <small>Estimated per person</small><br>
                                     <strong class="price-display" data-min="2500" data-max="3500">$2,500 - $3,500</strong>
                                 </div>
+                                <button class="btn btn-primary w-100 mt-3 select-resort-btn" data-resort="hokkaido" onclick="selectResort('hokkaido')">
+                                    Calculate My Costs for Hokkaido
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -107,6 +110,9 @@
                                     <small>Estimated per person</small><br>
                                     <strong class="price-display" data-min="2000" data-max="2800">$2,000 - $2,800</strong>
                                 </div>
+                                <button class="btn btn-primary w-100 mt-3 select-resort-btn" data-resort="nagano" onclick="selectResort('nagano')">
+                                    Calculate My Costs for Nagano
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -137,12 +143,141 @@
             </div>
         </section>
 
-        <section id="budget" class="py-5">
+        <section id="budget" class="py-5" style="display: none;">
             <div class="container">
-                <h2 class="text-center mb-4">Budget Calculator</h2>
-                <p class="text-center">Coming soon - interactive cost breakdown by departure city</p>
-                <div class="text-center mt-4">
-                    <button class="btn btn-primary btn-lg disabled">Calculate My Costs</button>
+                <h2 class="text-center mb-4">Cost Builder 💰</h2>
+                <p class="text-center mb-4">Customise your trip for <strong id="selectedResortName">Hokkaido</strong></p>
+                
+                <div class="row">
+                    <div class="col-lg-8">
+                        <!-- Flight Options -->
+                        <div class="cost-section mb-4">
+                            <h5 class="mb-3">✈️ Flights</h5>
+                            <select class="form-select" id="flightFrom">
+                                <option value="london">From London</option>
+                                <option value="hongkong">From Hong Kong</option>
+                                <option value="singapore">From Singapore</option>
+                                <option value="kl">From Kuala Lumpur</option>
+                                <option value="shanghai">From Shanghai</option>
+                            </select>
+                        </div>
+
+                        <!-- Accommodation -->
+                        <div class="cost-section mb-4">
+                            <h5 class="mb-3">🏨 Accommodation (7 nights)</h5>
+                            <div class="btn-group w-100" role="group">
+                                <input type="radio" class="btn-check" name="accommodation" id="accoBudget" value="budget" checked>
+                                <label class="btn btn-outline-primary" for="accoBudget">Budget</label>
+                                
+                                <input type="radio" class="btn-check" name="accommodation" id="accoMid" value="mid">
+                                <label class="btn btn-outline-primary" for="accoMid">Mid-Range</label>
+                                
+                                <input type="radio" class="btn-check" name="accommodation" id="accoPremium" value="premium">
+                                <label class="btn btn-outline-primary" for="accoPremium">Premium</label>
+                            </div>
+                        </div>
+
+                        <!-- Ski Pass -->
+                        <div class="cost-section mb-4">
+                            <h5 class="mb-3">🎿 Ski Pass</h5>
+                            <label for="skiDays" class="form-label">Number of days: <span id="skiDaysValue">6</span></label>
+                            <input type="range" class="form-range" min="3" max="7" value="6" id="skiDays">
+                        </div>
+
+                        <!-- Equipment Rental -->
+                        <div class="cost-section mb-4">
+                            <h5 class="mb-3">🎿 Equipment Rental</h5>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="needRental" checked>
+                                <label class="form-check-label" for="needRental">
+                                    I need equipment rental
+                                </label>
+                            </div>
+                            <div id="rentalOptions" class="mt-3">
+                                <div class="btn-group w-100" role="group">
+                                    <input type="radio" class="btn-check" name="rental" id="rentalStandard" value="standard" checked>
+                                    <label class="btn btn-outline-primary" for="rentalStandard">Standard</label>
+                                    
+                                    <input type="radio" class="btn-check" name="rental" id="rentalPremium" value="premium">
+                                    <label class="btn btn-outline-primary" for="rentalPremium">Premium</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Food Budget -->
+                        <div class="cost-section mb-4">
+                            <h5 class="mb-3">🍜 Food & Drinks</h5>
+                            <div class="btn-group w-100" role="group">
+                                <input type="radio" class="btn-check" name="food" id="foodBudget" value="budget" checked>
+                                <label class="btn btn-outline-primary" for="foodBudget">Budget</label>
+                                
+                                <input type="radio" class="btn-check" name="food" id="foodMid" value="mid">
+                                <label class="btn btn-outline-primary" for="foodMid">Mid-Range</label>
+                                
+                                <input type="radio" class="btn-check" name="food" id="foodPremium" value="premium">
+                                <label class="btn btn-outline-primary" for="foodPremium">Premium</label>
+                            </div>
+                        </div>
+
+                        <!-- Ski Lessons -->
+                        <div class="cost-section mb-4">
+                            <h5 class="mb-3">🏂 Ski Lessons</h5>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="needLessons">
+                                <label class="form-check-label" for="needLessons">
+                                    I want ski lessons
+                                </label>
+                            </div>
+                            <div id="lessonOptions" class="mt-3" style="display: none;">
+                                <label for="lessonDays" class="form-label">Number of days: <span id="lessonDaysValue">2</span></label>
+                                <input type="range" class="form-range" min="1" max="6" value="2" id="lessonDays">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="cost-summary sticky-top">
+                            <h4 class="mb-3">Your Total Cost</h4>
+                            <div class="cost-breakdown">
+                                <div class="cost-item">
+                                    <span>Flights</span>
+                                    <span class="price-display" id="flightCost">$0</span>
+                                </div>
+                                <div class="cost-item">
+                                    <span>Accommodation</span>
+                                    <span class="price-display" id="accoCost">$0</span>
+                                </div>
+                                <div class="cost-item">
+                                    <span>Ski Pass</span>
+                                    <span class="price-display" id="passCost">$0</span>
+                                </div>
+                                <div class="cost-item">
+                                    <span>Equipment</span>
+                                    <span class="price-display" id="equipmentCost">$0</span>
+                                </div>
+                                <div class="cost-item">
+                                    <span>Food & Drinks</span>
+                                    <span class="price-display" id="foodCost">$0</span>
+                                </div>
+                                <div class="cost-item">
+                                    <span>Ski Lessons</span>
+                                    <span class="price-display" id="lessonCost">$0</span>
+                                </div>
+                                <div class="cost-item">
+                                    <span>Local Transport</span>
+                                    <span class="price-display" id="transportCost">$0</span>
+                                </div>
+                                <hr>
+                                <div class="cost-item total">
+                                    <strong>TOTAL</strong>
+                                    <strong class="price-display" id="totalCost">$0</strong>
+                                </div>
+                            </div>
+                            <button class="btn btn-success w-100 mt-3" onclick="shareCosts()">
+                                Share My Breakdown 💬
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

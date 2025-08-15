@@ -126,13 +126,17 @@ function updateCountdown() {
 function updateScrollProgress() {
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollPosition = window.scrollY;
-    const scrollPercentage = (scrollPosition / scrollHeight) * 100;
+    const scrollPercentage = Math.min((scrollPosition / scrollHeight) * 100, 100);
     
     const indicator = document.querySelector('.mountain-indicator');
     if (indicator) {
+        // Get container height to calculate max travel distance
+        const containerHeight = window.innerHeight - 100; // Leave some margin
+        const maxTravel = containerHeight - 50; // Account for indicator size
+        
         // Move the mountain down as user scrolls down
-        const translateY = scrollPercentage * 2; // Mountain goes down with scroll
-        indicator.style.transform = `translateY(${translateY}px) scale(${1 + scrollPercentage / 300})`;
+        const translateY = (scrollPercentage / 100) * maxTravel;
+        indicator.style.transform = `translateY(${translateY}px) scale(${1 + scrollPercentage / 400})`;
     }
 }
 
@@ -186,10 +190,125 @@ async function loadTripData() {
     }
 }
 
-// Calculate total costs based on options
-function calculateTotalCost(accommodation, foodLevel, includeRental) {
-    // Placeholder for cost calculator
-    return 0;
+// Resort selection and scrolling
+function selectResort(resort) {
+    const budgetSection = document.getElementById('budget');
+    const resortName = document.getElementById('selectedResortName');
+    
+    // Update resort name
+    resortName.textContent = resort === 'hokkaido' ? 'Hokkaido' : 'Nagano';
+    
+    // Show the budget section
+    budgetSection.style.display = 'block';
+    
+    // Smooth scroll to budget section
+    setTimeout(() => {
+        budgetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+    
+    // Calculate initial costs
+    calculateCosts();
+}
+
+// Placeholder costs (in USD) - you can update these later
+const COSTS = {
+    hokkaido: {
+        flights: {
+            london: 1200,
+            hongkong: 800,
+            singapore: 900,
+            kl: 950,
+            shanghai: 750
+        },
+        accommodation: {
+            budget: 700,
+            mid: 1200,
+            premium: 2000
+        },
+        skiPass: 110, // per day
+        rental: {
+            standard: 42, // per day
+            premium: 67  // per day
+        },
+        food: {
+            budget: 40,  // per day
+            mid: 70,     // per day
+            premium: 120 // per day
+        },
+        lessons: 150, // per day
+        transport: 150
+    },
+    nagano: {
+        flights: {
+            london: 1100,
+            hongkong: 700,
+            singapore: 800,
+            kl: 850,
+            shanghai: 650
+        },
+        accommodation: {
+            budget: 600,
+            mid: 1000,
+            premium: 1600
+        },
+        skiPass: 92, // per day
+        rental: {
+            standard: 37, // per day
+            premium: 58  // per day
+        },
+        food: {
+            budget: 35,  // per day
+            mid: 60,     // per day
+            premium: 100 // per day
+        },
+        lessons: 120, // per day
+        transport: 100
+    }
+};
+
+// Calculate and update costs
+function calculateCosts() {
+    const resortName = document.getElementById('selectedResortName').textContent.toLowerCase();
+    const resort = COSTS[resortName] || COSTS.hokkaido;
+    
+    // Get selections
+    const flightFrom = document.getElementById('flightFrom').value;
+    const accommodation = document.querySelector('input[name="accommodation"]:checked').value;
+    const skiDays = parseInt(document.getElementById('skiDays').value);
+    const needRental = document.getElementById('needRental').checked;
+    const rentalType = document.querySelector('input[name="rental"]:checked').value;
+    const foodLevel = document.querySelector('input[name="food"]:checked').value;
+    const needLessons = document.getElementById('needLessons').checked;
+    const lessonDays = parseInt(document.getElementById('lessonDays').value);
+    
+    // Calculate individual costs
+    const flightCost = resort.flights[flightFrom];
+    const accoCost = resort.accommodation[accommodation];
+    const passCost = resort.skiPass * skiDays;
+    const equipmentCost = needRental ? resort.rental[rentalType] * skiDays : 0;
+    const foodCost = resort.food[foodLevel] * 7; // 7 days
+    const lessonCost = needLessons ? resort.lessons * lessonDays : 0;
+    const transportCost = resort.transport;
+    
+    const totalCost = flightCost + accoCost + passCost + equipmentCost + foodCost + lessonCost + transportCost;
+    
+    // Update display with current currency
+    const currency = document.getElementById('currencySelector').value;
+    
+    document.getElementById('flightCost').textContent = formatCurrency(flightCost, currency);
+    document.getElementById('accoCost').textContent = formatCurrency(accoCost, currency);
+    document.getElementById('passCost').textContent = formatCurrency(passCost, currency);
+    document.getElementById('equipmentCost').textContent = formatCurrency(equipmentCost, currency);
+    document.getElementById('foodCost').textContent = formatCurrency(foodCost, currency);
+    document.getElementById('lessonCost').textContent = formatCurrency(lessonCost, currency);
+    document.getElementById('transportCost').textContent = formatCurrency(transportCost, currency);
+    document.getElementById('totalCost').textContent = formatCurrency(totalCost, currency);
+}
+
+// Share costs function
+function shareCosts() {
+    // TODO: Implement sharing functionality
+    alert('Sharing functionality coming soon! For now, take a screenshot 📸');
 }
 
 // Initialize on page load
@@ -228,6 +347,74 @@ document.addEventListener('DOMContentLoaded', async function() {
         // Listen for currency changes
         currencySelector.addEventListener('change', (e) => {
             updatePrices(e.target.value);
+        });
+    }
+    
+    // Add event listeners for cost calculator
+    const costInputs = [
+        'flightFrom',
+        'skiDays',
+        'needRental',
+        'needLessons',
+        'lessonDays'
+    ];
+    
+    costInputs.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.addEventListener('change', calculateCosts);
+        }
+    });
+    
+    // Radio button listeners
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', calculateCosts);
+    });
+    
+    // Ski days slider
+    const skiDaysSlider = document.getElementById('skiDays');
+    if (skiDaysSlider) {
+        skiDaysSlider.addEventListener('input', (e) => {
+            document.getElementById('skiDaysValue').textContent = e.target.value;
+            calculateCosts();
+        });
+    }
+    
+    // Lesson days slider
+    const lessonDaysSlider = document.getElementById('lessonDays');
+    if (lessonDaysSlider) {
+        lessonDaysSlider.addEventListener('input', (e) => {
+            document.getElementById('lessonDaysValue').textContent = e.target.value;
+            calculateCosts();
+        });
+    }
+    
+    // Toggle rental options
+    const needRental = document.getElementById('needRental');
+    if (needRental) {
+        needRental.addEventListener('change', (e) => {
+            document.getElementById('rentalOptions').style.display = e.target.checked ? 'block' : 'none';
+            calculateCosts();
+        });
+    }
+    
+    // Toggle lesson options
+    const needLessons = document.getElementById('needLessons');
+    if (needLessons) {
+        needLessons.addEventListener('change', (e) => {
+            document.getElementById('lessonOptions').style.display = e.target.checked ? 'block' : 'none';
+            calculateCosts();
+        });
+    }
+    
+    // Currency selector for cost builder
+    if (currencySelector) {
+        currencySelector.addEventListener('change', () => {
+            // Recalculate costs if budget section is visible
+            const budgetSection = document.getElementById('budget');
+            if (budgetSection && budgetSection.style.display !== 'none') {
+                calculateCosts();
+            }
         });
     }
     
