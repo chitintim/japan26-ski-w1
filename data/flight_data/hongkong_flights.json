@@ -26,14 +26,14 @@
       {
         "route": "Direct to Tokyo",
         "airline": "Cathay Pacific, JAL, ANA, HK Express",
-        "estimated_cost": 500,
-        "duration": "4.5 hours",
+        "estimated_cost": 362,
+        "duration": "3hr 55min direct",
         "notes": "Plus 2.5-3 hours to Hakuba"
       }
     ],
     "best_option": {
-      "cost": 500,
-      "duration": "7.5 hours total",
+      "cost": 362,
+      "duration": "6.5 hours total",
       "booking_tip": "Multiple daily flights"
     }
   },

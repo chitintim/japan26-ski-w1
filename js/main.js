@@ -284,7 +284,7 @@ const COSTS = {
         flights: {
             // All fly to Tokyo (Narita/Haneda)
             london: 900,    // Similar pricing to CTS route
-            hongkong: 500,   // Even cheaper to Tokyo
+            hongkong: 362,   // HK$3,337 = $362 (Direct ANA)
             singapore: 450,  // Similar to HK pricing
             kl: 450,         // Similar pricing to other Asian cities
             shanghai: 339    // ¥2,461 = $339 (Direct to Tokyo!)
