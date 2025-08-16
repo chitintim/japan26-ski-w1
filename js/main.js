@@ -324,20 +324,53 @@ function updateComponentDescriptions() {
     const resortName = document.getElementById('selectedResortName').textContent.toLowerCase();
     const resort = COSTS[resortName] || COSTS.hokkaido;
     
-    // Update flight details
+    // Update flight details with actual airline and duration info
     const flightFrom = document.getElementById('flightFrom').value;
     const flightDetails = document.getElementById('flightDetails');
     const flightCost = resort.flights[flightFrom];
+    
     const flightInfo = {
-        london: resortName === 'hokkaido' ? 'Via Tokyo + domestic to Sapporo' : 'Direct to Tokyo (Narita/Haneda)',
-        hongkong: resortName === 'hokkaido' ? 'Direct flight to Sapporo available' : 'Direct to Tokyo',
-        singapore: resortName === 'hokkaido' ? 'Direct flight to Sapporo available' : 'Direct to Tokyo',
-        kl: resortName === 'hokkaido' ? 'Direct flight to Sapporo available' : 'Direct to Tokyo',
-        shanghai: resortName === 'hokkaido' ? 'Direct flight to Sapporo available' : 'Direct to Tokyo'
+        hokkaido: {
+            london: 'Korean Air via Seoul ICN (32-35hrs) • Long layover but saves £500+',
+            hongkong: 'Cathay/JAL DIRECT (5hrs) • Best convenience',
+            singapore: 'Cathay via HKG (12-14hrs) • Good value',
+            kl: 'AirAsia X DIRECT (7-9hrs) • Budget champion!',
+            shanghai: 'ANA via Tokyo (6-15hrs) • Cheapest overall'
+        },
+        nagano: {
+            london: 'Air China via Shanghai (17hrs + 3hr to Hakuba)',
+            hongkong: 'ANA DIRECT to Tokyo (4hrs + 3hr to Hakuba)',
+            singapore: 'JAL DIRECT to Tokyo (7hrs + 3hr to Hakuba)',
+            kl: 'ANA DIRECT to Tokyo (7hrs + 3hr to Hakuba)',
+            shanghai: 'ANA DIRECT to Tokyo (2.5hrs + 3hr to Hakuba)'
+        }
     };
+    
     if (flightDetails) {
         const currency = document.getElementById('currencySelector').value;
-        flightDetails.innerHTML = `${flightInfo[flightFrom]} • <strong>${formatCurrency(flightCost, currency)}</strong> return`;
+        const resortKey = resortName === 'hokkaido' ? 'hokkaido' : 'nagano';
+        
+        // Add actual searched prices for reference
+        const actualPrices = {
+            hokkaido: {
+                london: '£788',
+                hongkong: '£444',
+                singapore: '£389',
+                kl: '£400',
+                shanghai: '¥3,307'
+            },
+            nagano: {
+                london: '£869',
+                hongkong: 'HK$3,337',
+                singapore: 'S$710',
+                kl: 'MYR3,040',
+                shanghai: '¥2,461'
+            }
+        };
+        
+        flightDetails.innerHTML = `${flightInfo[resortKey][flightFrom]}<br>
+                                   <strong>${formatCurrency(flightCost, currency)}</strong> return 
+                                   <small>(actual: ${actualPrices[resortKey][flightFrom]})</small>`;
     }
     
     // Update food details
