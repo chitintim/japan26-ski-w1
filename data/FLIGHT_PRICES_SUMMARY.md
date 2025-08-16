@@ -17,7 +17,7 @@
 | **Shanghai** | **$339** | **Direct to Tokyo, 2hr 40min - CHEAPEST!** |
 | **Hong Kong** | **$362** | **Direct to Tokyo, 3hr 55min** |
 | Singapore | $450 | Direct to Tokyo, 7hrs |
-| Kuala Lumpur | $450 | Direct to Tokyo, 7hrs |
+| Kuala Lumpur | $621 | Direct to Tokyo, 6hr 40min |
 | London | $900 | Direct to Tokyo, 12hrs |
 
 ## Key Findings

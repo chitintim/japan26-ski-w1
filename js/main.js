@@ -286,7 +286,7 @@ const COSTS = {
             london: 900,    // Similar pricing to CTS route
             hongkong: 362,   // HK$3,337 = $362 (Direct ANA)
             singapore: 450,  // Similar to HK pricing
-            kl: 450,         // Similar pricing to other Asian cities
+            kl: 621,         // MYR 3,040 = $621 (Direct ANA)
             shanghai: 339    // ¥2,461 = $339 (Direct to Tokyo!)
         },
         accommodation: {

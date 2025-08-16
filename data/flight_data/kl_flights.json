@@ -26,14 +26,14 @@
       {
         "route": "Direct to Tokyo",
         "airline": "AirAsia X, Malaysia Airlines, ANA",
-        "estimated_cost": 450,
-        "duration": "7 hours",
+        "estimated_cost": 621,
+        "duration": "6hr 40min direct",
         "notes": "Plus 2.5-3 hours to Hakuba"
       }
     ],
     "best_option": {
-      "cost": 450,
-      "duration": "10 hours total",
+      "cost": 621,
+      "duration": "9.5 hours total",
       "booking_tip": "Multiple carriers available"
     }
   },
