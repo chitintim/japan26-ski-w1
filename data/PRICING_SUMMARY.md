@@ -33,13 +33,13 @@
 - **TOTAL: ~$3,137** (or $3,337 with lessons)
 
 ### PREMIUM - Hokkaido (Hotel Aya)
-- Flight from Singapore: $950
+- Flight from Singapore: $492 (£389 via HKG)
 - Accommodation: $1,248 (¥187,200)
 - Ski Pass (6 days): $282
 - Transport: $66
 - Food (7 days): $840
 - No equipment needed (own gear): $0
-- **TOTAL: ~$3,386**
+- **TOTAL: ~$2,928**
 
 ## Key Pricing Discoveries
 

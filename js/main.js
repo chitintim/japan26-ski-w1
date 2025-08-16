@@ -248,7 +248,7 @@ const COSTS = {
             // Via Seoul with Korean Air - actual March 2025 price
             london: 988,    // £788 = $988 (via ICN)
             hongkong: 561,   // £444 = $561 (Direct CX/JAL)
-            singapore: 950,  // Direct to Sapporo available  
+            singapore: 492,  // £389 = $492 (via HKG)  
             kl: 1000,        // Direct to Sapporo available
             shanghai: 750    // Direct to Sapporo available
         },
@@ -285,7 +285,7 @@ const COSTS = {
             // All fly to Tokyo (Narita/Haneda)
             london: 900,    // Similar pricing to CTS route
             hongkong: 500,   // Even cheaper to Tokyo
-            singapore: 800,
+            singapore: 450,  // Similar to HK pricing
             kl: 850,
             shanghai: 650
         },

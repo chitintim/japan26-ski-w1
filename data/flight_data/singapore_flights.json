@@ -1,0 +1,43 @@
+{
+  "departure_city": "Singapore",
+  "departure_code": "SIN",
+  
+  "to_hokkaido": {
+    "destination_airport": "New Chitose (CTS) via Hong Kong",
+    "flight_options": [
+      {
+        "route": "Via Hong Kong (HKG)",
+        "airline": "Cathay Pacific",
+        "estimated_cost": 492,
+        "duration": "12hr 25min outbound, 13hr 50min return",
+        "notes": "£389 actual price March 2025 - great value!"
+      }
+    ],
+    "best_option": {
+      "cost": 492,
+      "duration": "12-14 hours",
+      "booking_tip": "Via HK with 4hr layover - excellent price"
+    }
+  },
+  
+  "to_nagano": {
+    "destination_airport": "Tokyo Narita (NRT) or Haneda (HND)",
+    "flight_options": [
+      {
+        "route": "Direct to Tokyo",
+        "airline": "Singapore Airlines, JAL, ANA",
+        "estimated_cost": 450,
+        "duration": "7 hours",
+        "notes": "Plus 2.5-3 hours to Hakuba"
+      }
+    ],
+    "best_option": {
+      "cost": 450,
+      "duration": "10 hours total",
+      "booking_tip": "Direct flights available"
+    }
+  },
+  
+  "currency": "USD",
+  "last_updated": "2025-01-16"
+}
