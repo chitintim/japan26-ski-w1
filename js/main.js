@@ -532,6 +532,63 @@ function loadAccommodationPhotos() {
     `;
 }
 
+// Calculate price ranges for resort options
+function calculatePriceRanges() {
+    // Budget scenario: cheapest flight, budget accommodation, 6 days skiing, budget food/rental
+    // Premium scenario: expensive flight, premium accommodation, 7 days, premium everything
+    
+    const hokkaidoBudget = 
+        Math.min(...Object.values(COSTS.hokkaido.flights)) + // cheapest flight
+        COSTS.hokkaido.accommodation.budget +
+        COSTS.hokkaido.skiPass[6] +
+        COSTS.hokkaido.transport.public +
+        (COSTS.hokkaido.food.budget * 7) +
+        (COSTS.hokkaido.rental.standard * 6);
+    
+    const hokkaidoPremium = 
+        Math.max(...Object.values(COSTS.hokkaido.flights)) + // most expensive flight
+        COSTS.hokkaido.accommodation.premium +
+        COSTS.hokkaido.skiPass[7] +
+        COSTS.hokkaido.transport.rental +
+        (COSTS.hokkaido.food.premium * 7) +
+        (COSTS.hokkaido.rental.premium * 7);
+    
+    const naganoBudget = 
+        Math.min(...Object.values(COSTS.nagano.flights)) +
+        COSTS.nagano.accommodation.budget +
+        COSTS.nagano.skiPass[6] +
+        COSTS.nagano.transport.public +
+        (COSTS.nagano.food.budget * 7) +
+        (COSTS.nagano.rental.standard * 6);
+    
+    const naganoPremium = 
+        Math.max(...Object.values(COSTS.nagano.flights)) +
+        COSTS.nagano.accommodation.premium +
+        COSTS.nagano.skiPass[7] +
+        COSTS.nagano.transport.rental +
+        (COSTS.nagano.food.premium * 7) +
+        (COSTS.nagano.rental.premium * 7);
+    
+    // Update the data attributes - find price displays within resort cards
+    const hokkaidoCard = Array.from(document.querySelectorAll('.resort-card')).find(card => 
+        card.innerHTML.includes('Hokkaido'));
+    const naganoCard = Array.from(document.querySelectorAll('.resort-card')).find(card => 
+        card.innerHTML.includes('Nagano'));
+    
+    const hokkaidoDisplay = hokkaidoCard?.querySelector('.price-display');
+    const naganoDisplay = naganoCard?.querySelector('.price-display');
+    
+    if (hokkaidoDisplay) {
+        hokkaidoDisplay.dataset.min = Math.round(hokkaidoBudget / 50) * 50; // Round to nearest 50
+        hokkaidoDisplay.dataset.max = Math.round(hokkaidoPremium / 50) * 50;
+    }
+    
+    if (naganoDisplay) {
+        naganoDisplay.dataset.min = Math.round(naganoBudget / 50) * 50;
+        naganoDisplay.dataset.max = Math.round(naganoPremium / 50) * 50;
+    }
+}
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', async function() {
     // Start countdown
@@ -550,6 +607,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // Load accommodation photos
     loadAccommodationPhotos();
+    
+    // Calculate and set price ranges
+    calculatePriceRanges();
     
     // Initialize currency selector
     const currencySelector = document.getElementById('currencySelector');
