@@ -245,8 +245,8 @@ function selectResort(resort) {
 const COSTS = {
     hokkaido: {
         flights: {
-            // Includes connection via Tokyo if no direct flight + domestic flight to Sapporo
-            london: 1400,    // Via Tokyo + domestic to Sapporo
+            // Via Seoul with Korean Air - actual March 2025 price
+            london: 988,    // £788 = $988 (via ICN)
             hongkong: 850,   // Direct to Sapporo available
             singapore: 950,  // Direct to Sapporo available  
             kl: 1000,        // Direct to Sapporo available
@@ -283,7 +283,7 @@ const COSTS = {
     nagano: {
         flights: {
             // All fly to Tokyo (Narita/Haneda)
-            london: 1100,
+            london: 900,    // Similar pricing to CTS route
             hongkong: 700,
             singapore: 800,
             kl: 850,

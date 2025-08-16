@@ -23,14 +23,14 @@
 - **TOTAL: ~$2,319** (or $2,479 with lessons)
 
 ### MID-RANGE - Hokkaido
-- Flight from London: $1,400
+- Flight from London: $988 (£788 via Seoul)
 - Accommodation: $950
 - Ski Pass (6 days): $282
 - Transport: $145 (car rental)
 - Food (7 days): $490
 - Equipment (6 days): $282 (premium rentals ¥7,000/day)
 - Lessons (optional): $200 (2 days)
-- **TOTAL: ~$3,549** (or $3,749 with lessons)
+- **TOTAL: ~$3,137** (or $3,337 with lessons)
 
 ### PREMIUM - Hokkaido (Hotel Aya)
 - Flight from Singapore: $950

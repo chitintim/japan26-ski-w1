@@ -3,20 +3,20 @@
   "departure_code": "LHR/LGW",
   
   "to_hokkaido": {
-    "destination_airport": "New Chitose (CTS) via Tokyo",
+    "destination_airport": "New Chitose (CTS) via Seoul",
     "flight_options": [
       {
-        "route": "Via Tokyo (NRT/HND) + domestic",
-        "airline": "JAL, ANA, BA",
-        "estimated_cost": 1400,
-        "duration": "14-16 hours total",
-        "notes": "Need domestic connection to Sapporo"
+        "route": "Via Seoul Incheon (ICN)",
+        "airline": "Korean Air with Virgin Atlantic/JAL codeshare",
+        "estimated_cost": 988,
+        "duration": "32-35 hours total",
+        "notes": "Long layover but much cheaper - £788 actual price"
       }
     ],
     "best_option": {
-      "cost": 1400,
-      "duration": "14-16 hours",
-      "booking_tip": "Book by January for March travel"
+      "cost": 988,
+      "duration": "32-35 hours",
+      "booking_tip": "Korean Air via Seoul best value despite long layover"
     }
   },
   
@@ -32,9 +32,9 @@
       }
     ],
     "best_option": {
-      "cost": 1100,
+      "cost": 900,
       "duration": "15 hours total",
-      "booking_tip": "Haneda better for quick transfers"
+      "booking_tip": "Similar pricing to Sapporo route"
     }
   },
   
