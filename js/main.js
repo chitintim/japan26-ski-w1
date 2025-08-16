@@ -249,7 +249,7 @@ const COSTS = {
             london: 988,    // £788 = $988 (via ICN)
             hongkong: 561,   // £444 = $561 (Direct CX/JAL)
             singapore: 492,  // £389 = $492 (via HKG)  
-            kl: 1000,        // Direct to Sapporo available
+            kl: 506,         // £400 = $506 (Direct AirAsia X!)
             shanghai: 750    // Direct to Sapporo available
         },
         accommodation: {
@@ -286,7 +286,7 @@ const COSTS = {
             london: 900,    // Similar pricing to CTS route
             hongkong: 500,   // Even cheaper to Tokyo
             singapore: 450,  // Similar to HK pricing
-            kl: 850,
+            kl: 450,         // Similar pricing to other Asian cities
             shanghai: 650
         },
         accommodation: {

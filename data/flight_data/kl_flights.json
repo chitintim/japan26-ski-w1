@@ -1,0 +1,43 @@
+{
+  "departure_city": "Kuala Lumpur",
+  "departure_code": "KUL",
+  
+  "to_hokkaido": {
+    "destination_airport": "New Chitose (CTS)",
+    "flight_options": [
+      {
+        "route": "Direct to Sapporo",
+        "airline": "AirAsia X",
+        "estimated_cost": 506,
+        "duration": "7hr 35min outbound, 8hr 50min return",
+        "notes": "£400 / MYR 2,449 - DIRECT low-cost carrier!"
+      }
+    ],
+    "best_option": {
+      "cost": 506,
+      "duration": "7-9 hours",
+      "booking_tip": "AirAsia X direct flight - amazing budget option!"
+    }
+  },
+  
+  "to_nagano": {
+    "destination_airport": "Tokyo Narita (NRT)",
+    "flight_options": [
+      {
+        "route": "Direct to Tokyo",
+        "airline": "AirAsia X, Malaysia Airlines, ANA",
+        "estimated_cost": 450,
+        "duration": "7 hours",
+        "notes": "Plus 2.5-3 hours to Hakuba"
+      }
+    ],
+    "best_option": {
+      "cost": 450,
+      "duration": "10 hours total",
+      "booking_tip": "Multiple carriers available"
+    }
+  },
+  
+  "currency": "USD",
+  "last_updated": "2025-01-16"
+}
