@@ -1,0 +1,43 @@
+{
+  "departure_city": "London",
+  "departure_code": "LHR/LGW",
+  
+  "to_hokkaido": {
+    "destination_airport": "New Chitose (CTS) via Tokyo",
+    "flight_options": [
+      {
+        "route": "Via Tokyo (NRT/HND) + domestic",
+        "airline": "JAL, ANA, BA",
+        "estimated_cost": 1400,
+        "duration": "14-16 hours total",
+        "notes": "Need domestic connection to Sapporo"
+      }
+    ],
+    "best_option": {
+      "cost": 1400,
+      "duration": "14-16 hours",
+      "booking_tip": "Book by January for March travel"
+    }
+  },
+  
+  "to_nagano": {
+    "destination_airport": "Tokyo Narita (NRT) or Haneda (HND)",
+    "flight_options": [
+      {
+        "route": "Direct to Tokyo",
+        "airline": "JAL, ANA, BA, Virgin",
+        "estimated_cost": 1100,
+        "duration": "12 hours",
+        "notes": "Plus 2.5-3 hours to Hakuba"
+      }
+    ],
+    "best_option": {
+      "cost": 1100,
+      "duration": "15 hours total",
+      "booking_tip": "Haneda better for quick transfers"
+    }
+  },
+  
+  "currency": "USD",
+  "last_updated": "2025-01-16"
+}

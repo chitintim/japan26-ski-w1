@@ -1,24 +1,26 @@
-# JaPOW 2026 - Complete Pricing Summary
+# JaPOW 2026 - Complete Pricing Summary (Updated with 2025-26 Research)
 
 ## Quick Cost Comparison (Per Person, USD)
 
 ### BUDGET OPTION - Hokkaido
 - Flight from HK: $850
 - Accommodation: $643 (shared Airbnb)
-- Ski Pass (6 days): $282
+- Ski Pass (6 days): $282 (30% spring discount!)
 - Transport: $66 (bus)
 - Food (7 days): $280
-- Equipment (6 days): $252
-- **TOTAL: ~$2,373**
+- Equipment (6 days): $120 (budget rentals ¥3,000/day)
+- Lessons (optional): $200 (2 days)
+- **TOTAL: ~$2,241** (or $2,441 with lessons)
 
 ### BUDGET OPTION - Nagano  
 - Flight from HK: $700
 - Accommodation: $662 (shared chalet)
-- Ski Pass (6 days): $373
+- Ski Pass (6 days): $373 (no spring discount)
 - Transport: $225 (car rental needed for chalet)
 - Food (7 days): $245
-- Equipment (6 days): $222
-- **TOTAL: ~$2,427**
+- Equipment (6 days): $114 (budget rentals ¥2,800/day - best value!)
+- Lessons (optional): $160 (2 days)
+- **TOTAL: ~$2,319** (or $2,479 with lessons)
 
 ### MID-RANGE - Hokkaido
 - Flight from London: $1,400
@@ -26,12 +28,13 @@
 - Ski Pass (6 days): $282
 - Transport: $145 (car rental)
 - Food (7 days): $490
-- Equipment (6 days): $402
-- **TOTAL: ~$3,669**
+- Equipment (6 days): $282 (premium rentals ¥7,000/day)
+- Lessons (optional): $200 (2 days)
+- **TOTAL: ~$3,549** (or $3,749 with lessons)
 
 ### PREMIUM - Hokkaido (Hotel Aya)
 - Flight from Singapore: $950
-- Accommodation: $1,248
+- Accommodation: $1,248 (¥187,200)
 - Ski Pass (6 days): $282
 - Transport: $66
 - Food (7 days): $840
