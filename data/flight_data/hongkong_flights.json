@@ -7,16 +7,16 @@
     "flight_options": [
       {
         "route": "Direct to Sapporo",
-        "airline": "Cathay Pacific, HK Express",
-        "estimated_cost": 850,
-        "duration": "5 hours",
-        "notes": "Direct flights available!"
+        "airline": "Cathay Pacific with JAL codeshare",
+        "estimated_cost": 561,
+        "duration": "4hr 40min outbound, 5hr 20min return",
+        "notes": "Direct flights! £444 actual price March 2025"
       }
     ],
     "best_option": {
-      "cost": 850,
+      "cost": 561,
       "duration": "5 hours",
-      "booking_tip": "HK Express often has sales"
+      "booking_tip": "Amazing price for direct flights!"
     }
   },
   
@@ -26,13 +26,13 @@
       {
         "route": "Direct to Tokyo",
         "airline": "Cathay Pacific, JAL, ANA, HK Express",
-        "estimated_cost": 700,
+        "estimated_cost": 500,
         "duration": "4.5 hours",
         "notes": "Plus 2.5-3 hours to Hakuba"
       }
     ],
     "best_option": {
-      "cost": 700,
+      "cost": 500,
       "duration": "7.5 hours total",
       "booking_tip": "Multiple daily flights"
     }

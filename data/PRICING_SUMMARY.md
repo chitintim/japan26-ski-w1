@@ -3,24 +3,24 @@
 ## Quick Cost Comparison (Per Person, USD)
 
 ### BUDGET OPTION - Hokkaido
-- Flight from HK: $850
+- Flight from HK: $561 (£444 direct!)
 - Accommodation: $643 (shared Airbnb)
 - Ski Pass (6 days): $282 (30% spring discount!)
 - Transport: $66 (bus)
 - Food (7 days): $280
 - Equipment (6 days): $120 (budget rentals ¥3,000/day)
 - Lessons (optional): $200 (2 days)
-- **TOTAL: ~$2,241** (or $2,441 with lessons)
+- **TOTAL: ~$1,952** (or $2,152 with lessons)
 
 ### BUDGET OPTION - Nagano  
-- Flight from HK: $700
+- Flight from HK: $500
 - Accommodation: $662 (shared chalet)
 - Ski Pass (6 days): $373 (no spring discount)
 - Transport: $225 (car rental needed for chalet)
 - Food (7 days): $245
 - Equipment (6 days): $114 (budget rentals ¥2,800/day - best value!)
 - Lessons (optional): $160 (2 days)
-- **TOTAL: ~$2,319** (or $2,479 with lessons)
+- **TOTAL: ~$2,119** (or $2,279 with lessons)
 
 ### MID-RANGE - Hokkaido
 - Flight from London: $988 (£788 via Seoul)
