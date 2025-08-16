@@ -266,8 +266,8 @@ const COSTS = {
             7: 329    // ¥49,350 / 150 = $329
         },
         rental: {
-            standard: 42, // per day
-            premium: 67  // per day
+            standard: 20, // per day - ¥3,000/day budget rentals
+            premium: 47  // per day - ¥7,000/day premium models
         },
         food: {
             budget: 40,  // per day
@@ -303,8 +303,8 @@ const COSTS = {
             7: 434    // ¥65,100 / 150 = $434
         },
         rental: {
-            standard: 37, // per day
-            premium: 58  // per day
+            standard: 19, // per day - ¥2,800/day budget rentals (best value!)
+            premium: 43  // per day - ¥6,500/day premium models
         },
         food: {
             budget: 35,  // per day
@@ -403,6 +403,39 @@ function updateComponentDescriptions() {
         } else {
             lessonDetails.innerHTML = `Group lessons (2.5hrs morning) • ¥10,000-12,000/day<br>
                                        ${formatCurrency(dailyRate, currency)}/day • ${formatCurrency(totalLessonCost, currency)} total`;
+        }
+    }
+    
+    // Update rental details
+    const needRental = document.getElementById('needRental')?.checked;
+    const rentalType = document.querySelector('input[name="rental"]:checked')?.value || 'standard';
+    const rentalDetails = document.getElementById('rentalDetails');
+    if (rentalDetails && needRental) {
+        const currency = document.getElementById('currencySelector').value;
+        const skiDays = parseInt(document.getElementById('skiDays')?.value || 6);
+        const dailyRate = resort.rental[rentalType];
+        const totalRentalCost = dailyRate * skiDays;
+        
+        if (rentalType === 'standard') {
+            if (resortName === 'hokkaido') {
+                rentalDetails.innerHTML = `Budget gear (¥3,000/day) • Good for beginners/intermediate<br>
+                                          ${formatCurrency(dailyRate, currency)}/day • ${formatCurrency(totalRentalCost, currency)} total<br>
+                                          <small>6th day often free!</small>`;
+            } else {
+                rentalDetails.innerHTML = `Budget gear (¥2,800/day) • <strong>Best value!</strong><br>
+                                          ${formatCurrency(dailyRate, currency)}/day • ${formatCurrency(totalRentalCost, currency)} total<br>
+                                          <small>6th day often free!</small>`;
+            }
+        } else {
+            if (resortName === 'hokkaido') {
+                rentalDetails.innerHTML = `Premium models (¥7,000/day) • Latest gear, powder skis<br>
+                                          ${formatCurrency(dailyRate, currency)}/day • ${formatCurrency(totalRentalCost, currency)} total<br>
+                                          <small>Free swaps, waxing, storage included</small>`;
+            } else {
+                rentalDetails.innerHTML = `Premium models (¥6,500/day) • Latest gear, powder options<br>
+                                          ${formatCurrency(dailyRate, currency)}/day • ${formatCurrency(totalRentalCost, currency)} total<br>
+                                          <small>Free swaps, waxing, storage included</small>`;
+            }
         }
     }
 }
