@@ -331,18 +331,48 @@ function updateComponentDescriptions() {
     
     const flightInfo = {
         hokkaido: {
-            london: 'Korean Air via Seoul ICN (32-35hrs) • Long layover but saves £500+',
-            hongkong: 'Cathay/JAL DIRECT (5hrs) • Best convenience',
-            singapore: 'Cathay via HKG (12-14hrs) • Good value',
-            kl: 'AirAsia X DIRECT (7-9hrs) • Budget champion!',
-            shanghai: 'ANA via Tokyo (6-15hrs) • Cheapest overall'
+            london: `<strong>Korean Air + Virgin/JAL</strong> via Seoul (ICN)<br>
+                     ⏱️ Outbound: 32hr 55min (17hr 50min layover)<br>
+                     ⏱️ Return: 35hr 15min (17hr 50min layover)<br>
+                     💡 Long layover but saves £500+ vs direct options`,
+            hongkong: `<strong>Cathay Pacific/JAL</strong> - DIRECT!<br>
+                      ⏱️ Outbound: 4hr 40min<br>
+                      ⏱️ Return: 5hr 20min<br>
+                      ✅ Best convenience, no connections needed`,
+            singapore: `<strong>Cathay Pacific</strong> via Hong Kong<br>
+                       ⏱️ Outbound: 12hr 25min (4hr layover)<br>
+                       ⏱️ Return: 13hr 50min (4hr 45min layover)<br>
+                       💰 Great value with reasonable connection`,
+            kl: `<strong>AirAsia X</strong> - DIRECT budget carrier!<br>
+                ⏱️ Outbound: 7hr 35min<br>
+                ⏱️ Return: 8hr 50min<br>
+                🏆 Budget champion - no frills but unbeatable price`,
+            shanghai: `<strong>ANA (All Nippon)</strong> via Tokyo Haneda<br>
+                      ⏱️ Outbound: 6hr (1hr 50min connection)<br>
+                      ⏱️ Return: 15hr 15min (10hr 30min layover KIX)<br>
+                      💰 Cheapest overall despite return layover`
         },
         nagano: {
-            london: 'Air China via Shanghai (17hrs + 3hr to Hakuba)',
-            hongkong: 'ANA DIRECT to Tokyo (4hrs + 3hr to Hakuba)',
-            singapore: 'JAL DIRECT to Tokyo (7hrs + 3hr to Hakuba)',
-            kl: 'ANA DIRECT to Tokyo (7hrs + 3hr to Hakuba)',
-            shanghai: 'ANA DIRECT to Tokyo (2.5hrs + 3hr to Hakuba)'
+            london: `<strong>Air China</strong> via Shanghai (PVG)<br>
+                    ⏱️ Outbound: 17hr (2hr 55min layover)<br>
+                    ⏱️ Return: 23hr 25min (7hr 30min layover)<br>
+                    ➕ 2.5hr Shinkansen + bus to Hakuba`,
+            hongkong: `<strong>ANA</strong> - DIRECT to Tokyo!<br>
+                      ⏱️ Outbound: 3hr 55min<br>
+                      ⏱️ Return: 4hr 40min<br>
+                      ➕ 2.5hr Shinkansen + bus to Hakuba`,
+            singapore: `<strong>JAL</strong> - DIRECT to Tokyo!<br>
+                       ⏱️ Outbound: 6hr 45min<br>
+                       ⏱️ Return: 7hr 15min<br>
+                       ➕ 2.5hr Shinkansen + bus to Hakuba`,
+            kl: `<strong>ANA</strong> - DIRECT to Tokyo!<br>
+                ⏱️ Outbound: 6hr 40min<br>
+                ⏱️ Return: 7hr 25min<br>
+                ➕ 2.5hr Shinkansen + bus to Hakuba`,
+            shanghai: `<strong>ANA</strong> - DIRECT to Tokyo!<br>
+                      ⏱️ Outbound: 2hr 40min (shortest flight!)<br>
+                      ⏱️ Return: 14hr 35min (10hr 40min layover KIX)<br>
+                      ➕ 2.5hr Shinkansen + bus to Hakuba`
         }
     };
     
