@@ -250,7 +250,7 @@ const COSTS = {
             hongkong: 561,   // £444 = $561 (Direct CX/JAL)
             singapore: 492,  // £389 = $492 (via HKG)  
             kl: 506,         // £400 = $506 (Direct AirAsia X!)
-            shanghai: 750    // Direct to Sapporo available
+            shanghai: 457    // ¥3,307 = $457 (via Tokyo)
         },
         accommodation: {
             // Tim's requirements: max 2 per room, walking distance to lifts, prefer ski-in/out
@@ -287,7 +287,7 @@ const COSTS = {
             hongkong: 500,   // Even cheaper to Tokyo
             singapore: 450,  // Similar to HK pricing
             kl: 450,         // Similar pricing to other Asian cities
-            shanghai: 650
+            shanghai: 339    // ¥2,461 = $339 (Direct to Tokyo!)
         },
         accommodation: {
             // Chalets require driving to gondolas - car rental could reduce transport costs
