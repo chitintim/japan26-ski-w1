@@ -24,17 +24,17 @@
     "destination_airport": "Tokyo Narita (NRT) or Haneda (HND)",
     "flight_options": [
       {
-        "route": "Direct to Tokyo",
-        "airline": "JAL, ANA, BA, Virgin",
-        "estimated_cost": 1100,
-        "duration": "12 hours",
-        "notes": "Plus 2.5-3 hours to Hakuba"
+        "route": "Via Shanghai (PVG)",
+        "airline": "Air China",
+        "estimated_cost": 1095,
+        "duration": "17 hours",
+        "notes": "£869 actual price - Plus 2.5-3 hours to Hakuba"
       }
     ],
     "best_option": {
-      "cost": 900,
-      "duration": "15 hours total",
-      "booking_tip": "Similar pricing to Sapporo route"
+      "cost": 1095,
+      "duration": "20 hours total",
+      "booking_tip": "Via Shanghai cheaper than direct flights"
     }
   },
   

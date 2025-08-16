@@ -18,7 +18,7 @@
 | **Hong Kong** | **$362** | **Direct to Tokyo, 3hr 55min** |
 | Singapore | $481 | Direct to Tokyo, 6hr 45min |
 | Kuala Lumpur | $621 | Direct to Tokyo, 6hr 40min |
-| London | $900 | Direct to Tokyo, 12hrs |
+| London | $1095 | Via Shanghai, 17hrs |
 
 ## Key Findings
 
@@ -58,9 +58,12 @@ With these real flight prices, budget totals from each city:
 | Hong Kong | $561 | **$362** | ✅ Nagano cheaper by $199 |
 | Singapore | $492 | $481 | ≈ Similar (Nagano $11 cheaper) |
 | KL | **$506** | $621 | ✅ Hokkaido cheaper by $115 |
-| London | $988 | **$900** | ✅ Nagano cheaper by $88 |
+| London | **$988** | $1095 | ✅ Hokkaido cheaper by $107 |
 
-**Summary**: For most cities, flying to Tokyo (Nagano) is cheaper, EXCEPT for KL where AirAsia X direct to Sapporo wins!
+**Summary**: 
+- Asian cities (except KL): Tokyo/Nagano is cheaper
+- KL: Hokkaido cheaper (AirAsia X deal)
+- London: Hokkaido cheaper (better connection via Seoul)
 
 ## Exchange Rates Used
 - 1 GBP = 1.26 USD

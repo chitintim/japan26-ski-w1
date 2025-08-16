@@ -283,7 +283,7 @@ const COSTS = {
     nagano: {
         flights: {
             // All fly to Tokyo (Narita/Haneda)
-            london: 900,    // Similar pricing to CTS route
+            london: 1095,   // £869 = $1095 (via Shanghai)
             hongkong: 362,   // HK$3,337 = $362 (Direct ANA)
             singapore: 481,  // SGD 710 = $481 (Direct JAL)
             kl: 621,         // MYR 3,040 = $621 (Direct ANA)
