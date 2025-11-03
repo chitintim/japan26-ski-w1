@@ -85,7 +85,7 @@ function updatePrices(currency) {
 
 // Countdown timer to trip date
 function updateCountdown() {
-    const tripDate = new Date('2026-03-22T00:00:00');
+    const tripDate = new Date('2026-03-28T00:00:00');
     const now = new Date();
     const diff = tripDate - now;
     
@@ -195,47 +195,25 @@ function selectResort(resort) {
     const budgetSection = document.getElementById('budget');
     const resortName = document.getElementById('selectedResortName');
     const transportInfo = document.getElementById('transportInfo');
-    const accoDescription = document.getElementById('accoDescription');
-    
-    // Update resort name
-    resortName.textContent = resort === 'hokkaido' ? 'Hokkaido' : 'Nagano';
-    
+
+    // Update resort name (always Hokkaido/Niseko now)
+    resortName.textContent = 'Niseko Hirafu';
+
     // Update transport info
-    if (resort === 'hokkaido') {
-        transportInfo.innerHTML = `
-            • Return bus from Sapporo CTS airport<br>
-            • Direct flights from HK/SG/KL/Shanghai<br>
-            • London requires connection via Tokyo
-        `;
-        accoDescription.innerHTML = `
-            <strong>Tim's Requirements:</strong> Max 2 per room, walking distance/ski-in/out<br>
-            <strong>Budget:</strong> Shared Airbnb (4BR/8ppl) - £508/person<br>
-            <strong>Mid:</strong> Standard ski-in/out condos<br>
-            <strong>Premium:</strong> Hotel Aya w/ private onsen - ¥187k/person
-        `;
-    } else {
-        transportInfo.innerHTML = `
-            • Shinkansen from Tokyo to Nagano<br>
-            • Bus from Nagano to Hakuba<br>
-            • All cities fly to Tokyo (Narita/Haneda)
-        `;
-        accoDescription.innerHTML = `
-            <strong>Tim's Requirements:</strong> Max 2 per room, walking distance/ski-in/out<br>
-            <strong>Budget:</strong> 7-person chalet (£3,670 total) - needs car to gondola<br>
-            <strong>Mid:</strong> 8-person chalet, 4BR/4bath (£4,621 total)<br>
-            <strong>Premium:</strong> Luxury ski-in/out hotels<br>
-            <em>Note: Car rental could reduce transport costs & provide flexibility</em>
-        `;
-    }
-    
+    transportInfo.innerHTML = `
+        • Return bus from Sapporo CTS airport<br>
+        • Direct flights from HK/SG/KL/Shanghai<br>
+        • London requires connection via Tokyo
+    `;
+
     // Show the budget section
     budgetSection.style.display = 'block';
-    
+
     // Smooth scroll to budget section
     setTimeout(() => {
         budgetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 100);
-    
+
     // Calculate initial costs
     calculateCosts();
 }
@@ -253,10 +231,8 @@ const COSTS = {
             shanghai: 457    // ¥3,307 = $457 (via Tokyo)
         },
         accommodation: {
-            // Tim's requirements: max 2 per room, walking distance to lifts, prefer ski-in/out
-            budget: 643,     // £508.50 - Airbnb shared (4BR/8ppl), 7 nights
-            mid: 950,        // Standard hotels/condos, ski-in/out or very close
-            premium: 1248    // ¥187,200 - Hotel Aya w/ private onsen & sauna, ski-in/out
+            // FIXED: 16px Chalet - 8BR/8bath, £653.63 per person
+            fixed: 827       // £653.63 / 0.79 = $827.37 USD (7 nights)
         },
         // Niseko United Spring Rates (30% off) - March 23-April 5
         skiPass: {
@@ -279,50 +255,12 @@ const COSTS = {
             public: 66,   // Bus from Sapporo CTS to Niseko (¥10000 return)
             rental: 145   // £110/person car rental + fuel (¥3520) = $139 + $6 fuel
         }
-    },
-    nagano: {
-        flights: {
-            // All fly to Tokyo (Narita/Haneda)
-            london: 1095,   // £869 = $1095 (via Shanghai)
-            hongkong: 362,   // HK$3,337 = $362 (Direct ANA)
-            singapore: 481,  // SGD 710 = $481 (Direct JAL)
-            kl: 621,         // MYR 3,040 = $621 (Direct ANA)
-            shanghai: 339    // ¥2,461 = $339 (Direct to Tokyo!)
-        },
-        accommodation: {
-            // Chalets require driving to gondolas - car rental could reduce transport costs
-            budget: 662,     // £3,670 chalet ÷ 7 people = £524/person
-            mid: 731,        // £4,621 chalet ÷ 8 people = £578/person (4BR/4bath)
-            premium: 1200    // Luxury ski-in/out hotels
-        },
-        // Hakuba Valley Pass - 10 resorts, no spring discount
-        skiPass: {
-            4: 249,   // ¥37,400 / 150 = $249
-            5: 311,   // ¥46,600 / 150 = $311
-            6: 373,   // ¥55,900 / 150 = $373
-            7: 434    // ¥65,100 / 150 = $434
-        },
-        rental: {
-            standard: 19, // per day - ¥2,800/day budget rentals (best value!)
-            premium: 43  // per day - ¥6,500/day premium models
-        },
-        food: {
-            budget: 35,  // per day
-            mid: 60,     // per day
-            premium: 100 // per day
-        },
-        lessons: 80, // per day - Hakuba group lessons ¥10,000-12,000
-        transport: {
-            public: 153,  // Shinkansen + bus from Tokyo (¥23000 return)
-            rental: 225   // £150/person car + fuel (¥8960) + tolls (¥12000) = $190 + $15 + $20
-        }
     }
 };
 
 // Update component descriptions
 function updateComponentDescriptions() {
-    const resortName = document.getElementById('selectedResortName').textContent.toLowerCase();
-    const resort = COSTS[resortName] || COSTS.hokkaido;
+    const resort = COSTS.hokkaido; // Fixed to Hokkaido only
     
     // Update flight details with actual airline and duration info
     const flightFrom = document.getElementById('flightFrom').value;
@@ -330,77 +268,43 @@ function updateComponentDescriptions() {
     const flightCost = resort.flights[flightFrom];
     
     const flightInfo = {
-        hokkaido: {
-            london: `<strong>Korean Air + Virgin/JAL</strong> via Seoul (ICN)<br>
-                     ⏱️ Outbound: 32hr 55min (17hr 50min layover)<br>
-                     ⏱️ Return: 35hr 15min (17hr 50min layover)<br>
-                     💡 Long layover but saves £500+ vs direct options`,
-            hongkong: `<strong>Cathay Pacific/JAL</strong> - DIRECT!<br>
-                      ⏱️ Outbound: 4hr 40min<br>
-                      ⏱️ Return: 5hr 20min<br>
-                      ✅ Best convenience, no connections needed`,
-            singapore: `<strong>Cathay Pacific</strong> via Hong Kong<br>
-                       ⏱️ Outbound: 12hr 25min (4hr layover)<br>
-                       ⏱️ Return: 13hr 50min (4hr 45min layover)<br>
-                       💰 Great value with reasonable connection`,
-            kl: `<strong>AirAsia X</strong> - DIRECT budget carrier!<br>
-                ⏱️ Outbound: 7hr 35min<br>
-                ⏱️ Return: 8hr 50min<br>
-                🏆 Budget champion - no frills but unbeatable price`,
-            shanghai: `<strong>ANA (All Nippon)</strong> via Tokyo Haneda<br>
-                      ⏱️ Outbound: 6hr (1hr 50min connection)<br>
-                      ⏱️ Return: 15hr 15min (10hr 30min layover KIX)<br>
-                      💰 Cheapest overall despite return layover`
-        },
-        nagano: {
-            london: `<strong>Air China</strong> via Shanghai (PVG)<br>
-                    ⏱️ Outbound: 17hr (2hr 55min layover)<br>
-                    ⏱️ Return: 23hr 25min (7hr 30min layover)<br>
-                    ➕ 2.5hr Shinkansen + bus to Hakuba`,
-            hongkong: `<strong>ANA</strong> - DIRECT to Tokyo!<br>
-                      ⏱️ Outbound: 3hr 55min<br>
-                      ⏱️ Return: 4hr 40min<br>
-                      ➕ 2.5hr Shinkansen + bus to Hakuba`,
-            singapore: `<strong>JAL</strong> - DIRECT to Tokyo!<br>
-                       ⏱️ Outbound: 6hr 45min<br>
-                       ⏱️ Return: 7hr 15min<br>
-                       ➕ 2.5hr Shinkansen + bus to Hakuba`,
-            kl: `<strong>ANA</strong> - DIRECT to Tokyo!<br>
-                ⏱️ Outbound: 6hr 40min<br>
-                ⏱️ Return: 7hr 25min<br>
-                ➕ 2.5hr Shinkansen + bus to Hakuba`,
-            shanghai: `<strong>ANA</strong> - DIRECT to Tokyo!<br>
-                      ⏱️ Outbound: 2hr 40min (shortest flight!)<br>
-                      ⏱️ Return: 14hr 35min (10hr 40min layover KIX)<br>
-                      ➕ 2.5hr Shinkansen + bus to Hakuba`
-        }
+        london: `<strong>Korean Air + Virgin/JAL</strong> via Seoul (ICN)<br>
+                 ⏱️ Outbound: 32hr 55min (17hr 50min layover)<br>
+                 ⏱️ Return: 35hr 15min (17hr 50min layover)<br>
+                 💡 Long layover but saves £500+ vs direct options`,
+        hongkong: `<strong>Cathay Pacific/JAL</strong> - DIRECT!<br>
+                  ⏱️ Outbound: 4hr 40min<br>
+                  ⏱️ Return: 5hr 20min<br>
+                  ✅ Best convenience, no connections needed`,
+        singapore: `<strong>Cathay Pacific</strong> via Hong Kong<br>
+                   ⏱️ Outbound: 12hr 25min (4hr layover)<br>
+                   ⏱️ Return: 13hr 50min (4hr 45min layover)<br>
+                   💰 Great value with reasonable connection`,
+        kl: `<strong>AirAsia X</strong> - DIRECT budget carrier!<br>
+            ⏱️ Outbound: 7hr 35min<br>
+            ⏱️ Return: 8hr 50min<br>
+            🏆 Budget champion - no frills but unbeatable price`,
+        shanghai: `<strong>ANA (All Nippon)</strong> via Tokyo Haneda<br>
+                  ⏱️ Outbound: 6hr (1hr 50min connection)<br>
+                  ⏱️ Return: 15hr 15min (10hr 30min layover KIX)<br>
+                  💰 Cheapest overall despite return layover`
     };
     
     if (flightDetails) {
         const currency = document.getElementById('currencySelector').value;
-        const resortKey = resortName === 'hokkaido' ? 'hokkaido' : 'nagano';
-        
+
         // Add actual searched prices for reference
         const actualPrices = {
-            hokkaido: {
-                london: '£788',
-                hongkong: '£444',
-                singapore: '£389',
-                kl: '£400',
-                shanghai: '¥3,307'
-            },
-            nagano: {
-                london: '£869',
-                hongkong: 'HK$3,337',
-                singapore: 'S$710',
-                kl: 'MYR3,040',
-                shanghai: '¥2,461'
-            }
+            london: '£788',
+            hongkong: '£444',
+            singapore: '£389',
+            kl: '£400',
+            shanghai: '¥3,307'
         };
-        
-        flightDetails.innerHTML = `${flightInfo[resortKey][flightFrom]}<br>
-                                   <strong>${formatCurrency(flightCost, currency)}</strong> return 
-                                   <small>(actual: ${actualPrices[resortKey][flightFrom]})</small>`;
+
+        flightDetails.innerHTML = `${flightInfo[flightFrom]}<br>
+                                   <strong>${formatCurrency(flightCost, currency)}</strong> return
+                                   <small>(actual: ${actualPrices[flightFrom]})</small>`;
     }
     
     // Update food details
@@ -419,18 +323,10 @@ function updateComponentDescriptions() {
     const transportType = document.querySelector('input[name="transportType"]:checked')?.value || 'public';
     const transportDetails = document.getElementById('transportDetails');
     if (transportDetails) {
-        if (resortName === 'hokkaido') {
-            if (transportType === 'rental') {
-                transportDetails.innerHTML = `7-seater rental (£110pp) + fuel • <strong>Freedom to explore!</strong>`;
-            } else {
-                transportDetails.innerHTML = `Return bus from Sapporo airport • Most economical`;
-            }
+        if (transportType === 'rental') {
+            transportDetails.innerHTML = `7-seater rental (£110pp) + fuel • <strong>Freedom to explore!</strong>`;
         } else {
-            if (transportType === 'rental') {
-                transportDetails.innerHTML = `7-seater rental (£150pp) + fuel/tolls • <strong>Access to chalets!</strong>`;
-            } else {
-                transportDetails.innerHTML = `Shinkansen + bus • Fastest option (2.5hrs)`;
-            }
+            transportDetails.innerHTML = `Return bus from Sapporo airport • Most economical`;
         }
     }
     
@@ -441,14 +337,9 @@ function updateComponentDescriptions() {
         const passPrice = resort.skiPass[skiDays];
         const currency = document.getElementById('currencySelector').value;
         const perDay = Math.round(passPrice / skiDays);
-        
-        if (resortName === 'hokkaido') {
-            skiPassDetails.innerHTML = `Niseko United (4 mountains) • <strong>30% spring discount!</strong><br>
-                                        ${formatCurrency(passPrice, currency)} total • ${formatCurrency(perDay, currency)}/day`;
-        } else {
-            skiPassDetails.innerHTML = `Hakuba Valley Pass (10 resorts)<br>
-                                        ${formatCurrency(passPrice, currency)} total • ${formatCurrency(perDay, currency)}/day`;
-        }
+
+        skiPassDetails.innerHTML = `Niseko United (4 mountains) • <strong>30% spring discount!</strong><br>
+                                    ${formatCurrency(passPrice, currency)} total • ${formatCurrency(perDay, currency)}/day`;
     }
     
     // Update lesson details
@@ -459,14 +350,9 @@ function updateComponentDescriptions() {
         const currency = document.getElementById('currencySelector').value;
         const dailyRate = resort.lessons;
         const totalLessonCost = dailyRate * lessonDays;
-        
-        if (resortName === 'hokkaido') {
-            lessonDetails.innerHTML = `Group lessons (2.5hrs morning) • ¥15,000/day<br>
-                                       ${formatCurrency(dailyRate, currency)}/day • ${formatCurrency(totalLessonCost, currency)} total`;
-        } else {
-            lessonDetails.innerHTML = `Group lessons (2.5hrs morning) • ¥10,000-12,000/day<br>
-                                       ${formatCurrency(dailyRate, currency)}/day • ${formatCurrency(totalLessonCost, currency)} total`;
-        }
+
+        lessonDetails.innerHTML = `Group lessons (2.5hrs morning) • ¥15,000/day<br>
+                                   ${formatCurrency(dailyRate, currency)}/day • ${formatCurrency(totalLessonCost, currency)} total`;
     }
     
     // Update rental details
@@ -478,39 +364,25 @@ function updateComponentDescriptions() {
         const skiDays = parseInt(document.getElementById('skiDays')?.value || 6);
         const dailyRate = resort.rental[rentalType];
         const totalRentalCost = dailyRate * skiDays;
-        
+
         if (rentalType === 'standard') {
-            if (resortName === 'hokkaido') {
-                rentalDetails.innerHTML = `Budget gear (¥3,000/day) • Good for beginners/intermediate<br>
-                                          ${formatCurrency(dailyRate, currency)}/day • ${formatCurrency(totalRentalCost, currency)} total<br>
-                                          <small>6th day often free!</small>`;
-            } else {
-                rentalDetails.innerHTML = `Budget gear (¥2,800/day) • <strong>Best value!</strong><br>
-                                          ${formatCurrency(dailyRate, currency)}/day • ${formatCurrency(totalRentalCost, currency)} total<br>
-                                          <small>6th day often free!</small>`;
-            }
+            rentalDetails.innerHTML = `Budget gear (¥3,000/day) • Good for beginners/intermediate<br>
+                                      ${formatCurrency(dailyRate, currency)}/day • ${formatCurrency(totalRentalCost, currency)} total<br>
+                                      <small>6th day often free!</small>`;
         } else {
-            if (resortName === 'hokkaido') {
-                rentalDetails.innerHTML = `Premium models (¥7,000/day) • Latest gear, powder skis<br>
-                                          ${formatCurrency(dailyRate, currency)}/day • ${formatCurrency(totalRentalCost, currency)} total<br>
-                                          <small>Free swaps, waxing, storage included</small>`;
-            } else {
-                rentalDetails.innerHTML = `Premium models (¥6,500/day) • Latest gear, powder options<br>
-                                          ${formatCurrency(dailyRate, currency)}/day • ${formatCurrency(totalRentalCost, currency)} total<br>
-                                          <small>Free swaps, waxing, storage included</small>`;
-            }
+            rentalDetails.innerHTML = `Premium models (¥7,000/day) • Latest gear, powder skis<br>
+                                      ${formatCurrency(dailyRate, currency)}/day • ${formatCurrency(totalRentalCost, currency)} total<br>
+                                      <small>Free swaps, waxing, storage included</small>`;
         }
     }
 }
 
 // Calculate and update costs
 function calculateCosts() {
-    const resortName = document.getElementById('selectedResortName').textContent.toLowerCase();
-    const resort = COSTS[resortName] || COSTS.hokkaido;
-    
+    const resort = COSTS.hokkaido; // Fixed to Hokkaido only
+
     // Get selections
     const flightFrom = document.getElementById('flightFrom').value;
-    const accommodation = document.querySelector('input[name="accommodation"]:checked').value;
     const skiDays = parseInt(document.getElementById('skiDays').value);
     const needRental = document.getElementById('needRental').checked;
     const rentalType = document.querySelector('input[name="rental"]:checked').value;
@@ -518,19 +390,19 @@ function calculateCosts() {
     const needLessons = document.getElementById('needLessons').checked;
     const lessonDays = parseInt(document.getElementById('lessonDays').value);
     const transportType = document.querySelector('input[name="transportType"]:checked')?.value || 'public';
-    
+
     // Update component descriptions
     updateComponentDescriptions();
-    
+
     // Calculate individual costs
     const flightCost = resort.flights[flightFrom];
-    const accoCost = resort.accommodation[accommodation];
+    const accoCost = resort.accommodation.fixed; // Fixed accommodation cost
     const passCost = resort.skiPass[skiDays] || resort.skiPass[6]; // Use 6-day as fallback
     const equipmentCost = needRental ? resort.rental[rentalType] * skiDays : 0;
     const foodCost = resort.food[foodLevel] * 7; // 7 days
     const lessonCost = needLessons ? resort.lessons * lessonDays : 0;
     const transportCost = resort.transport[transportType] || resort.transport.public;
-    
+
     const totalCost = flightCost + accoCost + passCost + equipmentCost + foodCost + lessonCost + transportCost;
     
     // Update display with current currency
@@ -597,58 +469,32 @@ function loadAccommodationPhotos() {
 
 // Calculate price ranges for resort options
 function calculatePriceRanges() {
-    // Budget scenario: cheapest flight, budget accommodation, 6 days skiing, budget food/rental
-    // Premium scenario: expensive flight, premium accommodation, 7 days, premium everything
-    
-    const hokkaidoBudget = 
+    // Budget scenario: cheapest flight, fixed accommodation, 6 days skiing, budget food/rental
+    // Premium scenario: expensive flight, fixed accommodation, 7 days, premium everything
+
+    const hokkaidoBudget =
         Math.min(...Object.values(COSTS.hokkaido.flights)) + // cheapest flight
-        COSTS.hokkaido.accommodation.budget +
+        COSTS.hokkaido.accommodation.fixed + // fixed accommodation
         COSTS.hokkaido.skiPass[6] +
         COSTS.hokkaido.transport.public +
         (COSTS.hokkaido.food.budget * 7) +
         (COSTS.hokkaido.rental.standard * 6);
-    
-    const hokkaidoPremium = 
+
+    const hokkaidoPremium =
         Math.max(...Object.values(COSTS.hokkaido.flights)) + // most expensive flight
-        COSTS.hokkaido.accommodation.premium +
+        COSTS.hokkaido.accommodation.fixed + // fixed accommodation
         COSTS.hokkaido.skiPass[7] +
         COSTS.hokkaido.transport.rental +
         (COSTS.hokkaido.food.premium * 7) +
         (COSTS.hokkaido.rental.premium * 7);
-    
-    const naganoBudget = 
-        Math.min(...Object.values(COSTS.nagano.flights)) +
-        COSTS.nagano.accommodation.budget +
-        COSTS.nagano.skiPass[6] +
-        COSTS.nagano.transport.public +
-        (COSTS.nagano.food.budget * 7) +
-        (COSTS.nagano.rental.standard * 6);
-    
-    const naganoPremium = 
-        Math.max(...Object.values(COSTS.nagano.flights)) +
-        COSTS.nagano.accommodation.premium +
-        COSTS.nagano.skiPass[7] +
-        COSTS.nagano.transport.rental +
-        (COSTS.nagano.food.premium * 7) +
-        (COSTS.nagano.rental.premium * 7);
-    
-    // Update the data attributes - find price displays within resort cards
-    const hokkaidoCard = Array.from(document.querySelectorAll('.resort-card')).find(card => 
-        card.innerHTML.includes('Hokkaido'));
-    const naganoCard = Array.from(document.querySelectorAll('.resort-card')).find(card => 
-        card.innerHTML.includes('Nagano'));
-    
+
+    // Update the data attributes - find price display within resort card
+    const hokkaidoCard = document.querySelector('.resort-card');
     const hokkaidoDisplay = hokkaidoCard?.querySelector('.price-display');
-    const naganoDisplay = naganoCard?.querySelector('.price-display');
-    
+
     if (hokkaidoDisplay) {
         hokkaidoDisplay.dataset.min = Math.round(hokkaidoBudget / 50) * 50; // Round to nearest 50
         hokkaidoDisplay.dataset.max = Math.round(hokkaidoPremium / 50) * 50;
-    }
-    
-    if (naganoDisplay) {
-        naganoDisplay.dataset.min = Math.round(naganoBudget / 50) * 50;
-        naganoDisplay.dataset.max = Math.round(naganoPremium / 50) * 50;
     }
 }
 
