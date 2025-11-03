@@ -308,7 +308,7 @@ function updateComponentDescriptions() {
     }
     
     // Update food details
-    const foodLevel = document.querySelector('input[name="food"]:checked').value;
+    const foodLevel = document.querySelector('input[name="food"]:checked')?.value || 'budget';
     const foodDetails = document.getElementById('foodDetails');
     const foodDescriptions = {
         budget: 'Convenience stores, ramen shops, casual dining • $35-40/day',
@@ -385,8 +385,8 @@ function calculateCosts() {
     const flightFrom = document.getElementById('flightFrom').value;
     const skiDays = parseInt(document.getElementById('skiDays').value);
     const needRental = document.getElementById('needRental').checked;
-    const rentalType = document.querySelector('input[name="rental"]:checked').value;
-    const foodLevel = document.querySelector('input[name="food"]:checked').value;
+    const rentalType = document.querySelector('input[name="rental"]:checked')?.value || 'standard';
+    const foodLevel = document.querySelector('input[name="food"]:checked')?.value || 'budget';
     const needLessons = document.getElementById('needLessons').checked;
     const lessonDays = parseInt(document.getElementById('lessonDays').value);
     const transportType = document.querySelector('input[name="transportType"]:checked')?.value || 'public';
